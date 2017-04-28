@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Fisherman Form</title>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</h:head>
+<h:body>
+	<h2>Tamilnadu Fisherman</h2>
+	<h:form id="formId">
+		<h:messages globalOnly="true" />
+		<h:panelGroup id="codePanId"
+			rendered="#{formMgmtBean.pageFlag eq 'viewExistingForm'}">
+			<h:outputLabel value="Form code : " />
+			<h:inputText id="formCodeId" value="#{formMgmtBean.formCode}"
+				required="true" requiredMessage="Form code is required" />
+			<br />
+			<h:commandButton action="#{formMgmtBean.loadForm()}"
+				value="view">
+				<f:ajax execute="codePanId" render="@form" />
+			</h:commandButton>
+
+		</h:panelGroup>
+		<h:panelGroup id="newPanId"
+			rendered="#{formMgmtBean.pageFlag eq 'new'}">
+			<h:outputLabel value="First Name : " />
+			<h:inputText id="firstNameId" value="#{formMgmtBean.form.firstName}"
+				required="true" requiredMessage="First Name is required" />
+			<h:message for="firstNameId" />
+			<br />
+			<h:outputLabel value="Last Name : " />
+			<h:inputText value="#{formMgmtBean.form.lastName}" />
+			<br />
+			<h:outputLabel value="age : " />
+			<h:inputText value="#{formMgmtBean.form.age}" />
+			<br />
+			<h:commandButton action="#{formMgmtBean.setPageFlag('pre-view')}"
+				value="Preview">
+				<f:ajax execute="newPanId" render="@form" />
+			</h:commandButton>
+		</h:panelGroup>
+
+		<h:panelGroup rendered="#{formMgmtBean.pageFlag eq 'pre-view'}">
+			<h:outputLabel value="First Name : " />
+			<h:outputText value="#{formMgmtBean.form.firstName}" />
+			<br />
+			<h:outputLabel value="Last Name : " />
+			<h:outputText value="#{formMgmtBean.form.lastName}" />
+			<br />
+			<h:outputLabel value="age : " />
+			<h:outputText value="#{formMgmtBean.form.age}" />
+			<br />
+			<h:commandButton action="#{formMgmtBean.save}" value="save">
+				<f:ajax execute="newPanId" render="@form" />
+			</h:commandButton>
+			<h:commandButton action="#{formMgmtBean.setPageFlag('new')}"
+				value="edit">
+				<f:ajax execute="newPanId" render="@form" />
+			</h:commandButton>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{formMgmtBean.pageFlag eq 'view'}">
+			<h:outputLabel value="Code : " />
+			<h:outputText value="#{formMgmtBean.form.formCode}" />
+			<br />
+			<h:outputLabel value="First Name : " />
+			<h:outputText value="#{formMgmtBean.form.firstName}" />
+			<br />
+			<h:outputLabel value="Last Name : " />
+			<h:outputText value="#{formMgmtBean.form.lastName}" />
+			<br />
+			<h:outputLabel value="age : " />
+			<h:outputText value="#{formMgmtBean.form.age}" />
+			<br />
+			<h:commandButton id="downloadBtnId"
+				action="#{formMgmtBean.download()}" value="click here to download" />
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#formId\\:downloadBtnId').click();
+				});
+			 </script>
+		</h:panelGroup>
+	</h:form>
+</h:body>
+</html>

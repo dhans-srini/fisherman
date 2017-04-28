@@ -6,7 +6,7 @@
 	id="WebApp_ID" version="2.5">
 
 	<welcome-file-list>
-		<welcome-file>faces/pages/home.xhtml</welcome-file>
+		<welcome-file>home.xhtml</welcome-file>
 	</welcome-file-list>
 
 
@@ -15,21 +15,6 @@
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.faces</url-pattern>
-	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>

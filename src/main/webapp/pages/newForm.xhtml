@@ -7,8 +7,12 @@
 
 <h:head>
 	<title>Fisherman Form</title>
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 </h:head>
 <h:body>
 	<h2>Tamilnadu Fisherman</h2>
@@ -20,24 +24,29 @@
 			<h:inputText id="formCodeId" value="#{formMgmtBean.formCode}"
 				required="true" requiredMessage="Form code is required" />
 			<br />
-			<h:commandButton action="#{formMgmtBean.loadForm()}"
-				value="view">
+			<h:commandButton action="#{formMgmtBean.loadForm()}" value="view">
 				<f:ajax execute="codePanId" render="@form" />
 			</h:commandButton>
 
 		</h:panelGroup>
 		<h:panelGroup id="newPanId"
 			rendered="#{formMgmtBean.pageFlag eq 'new'}">
-			<h:outputLabel value="First Name : " />
-			<h:inputText id="firstNameId" value="#{formMgmtBean.form.firstName}"
+			<h:outputText value="#{label.name} : " />
+			<h:inputText id="firstNameId" value="#{formMgmtBean.form.name}"
 				required="true" requiredMessage="First Name is required" />
 			<h:message for="firstNameId" />
 			<br />
-			<h:outputLabel value="Last Name : " />
-			<h:inputText value="#{formMgmtBean.form.lastName}" />
+			<h:outputText value="#{label.father_name} : " />
+			<h:inputText value="#{formMgmtBean.form.fathersName}" />
 			<br />
-			<h:outputLabel value="age : " />
-			<h:inputText value="#{formMgmtBean.form.age}" />
+			<h:outputText value="#{label.is_married} : " />
+			<h:selectOneRadio value="#{formMgmtBean.form.married}">
+				<f:selectItem itemValue="true" itemLabel="#{label.yes}" />
+				<f:selectItem itemValue="false" itemLabel="#{label.no}" />
+			</h:selectOneRadio>
+			<br />
+			<h:outputText value="#{label.section} : " />
+			<h:inputText value="#{formMgmtBean.form.section}" />
 			<br />
 			<h:commandButton action="#{formMgmtBean.setPageFlag('pre-view')}"
 				value="Preview">
@@ -45,44 +54,101 @@
 			</h:commandButton>
 		</h:panelGroup>
 
-		<h:panelGroup rendered="#{formMgmtBean.pageFlag eq 'pre-view'}">
-			<h:outputLabel value="First Name : " />
-			<h:outputText value="#{formMgmtBean.form.firstName}" />
+		<h:panelGroup
+			rendered="#{formMgmtBean.pageFlag eq 'pre-view' or formMgmtBean.pageFlag eq 'view'}">
+			<h:outputText value="#{label.name} : " />
+			<h:outputText value="#{formMgmtBean.form.name}" />
 			<br />
-			<h:outputLabel value="Last Name : " />
-			<h:outputText value="#{formMgmtBean.form.lastName}" />
+			<h:outputText value="#{label.father_name} : " />
+			<h:outputText value="#{formMgmtBean.form.fathersName}" />
 			<br />
-			<h:outputLabel value="age : " />
-			<h:outputText value="#{formMgmtBean.form.age}" />
+			<h:outputText value="#{label.is_married} : " />
+			<h:outputText value="#{formMgmtBean.form.married}" />
 			<br />
-			<h:commandButton action="#{formMgmtBean.save}" value="save">
-				<f:ajax execute="newPanId" render="@form" />
-			</h:commandButton>
-			<h:commandButton action="#{formMgmtBean.setPageFlag('new')}"
-				value="edit">
-				<f:ajax execute="newPanId" render="@form" />
-			</h:commandButton>
+			<h:outputText value="#{label.section} : " />
+			<h:outputText value="#{formMgmtBean.form.section}" />
+			<br />
+			<h:panelGroup rendered="#{formMgmtBean.pageFlag eq 'pre-view'}">
+				<h:commandButton action="#{formMgmtBean.save}" value="save">
+					<f:ajax execute="newPanId" render="@form" />
+				</h:commandButton>
+				<h:commandButton action="#{formMgmtBean.setPageFlag('new')}"
+					value="edit">
+					<f:ajax execute="newPanId" render="@form" />
+				</h:commandButton>
+			</h:panelGroup>
+
+			<h:panelGroup id="hisPanId"
+				rendered="#{formMgmtBean.pageFlag eq 'view'}">
+				<h:commandButton action="#{formMgmtBean.setPageFlag('new')}"
+					value="edit">
+					<f:ajax execute="newPanId" render="@form" />
+				</h:commandButton>
+				<br />
+				<h:commandButton id="downloadBtnId"
+					action="#{formMgmtBean.download()}" value="click here to download" />
+
+				<h:panelGroup
+					rendered="#{formMgmtBean.adminPage eq 'adminView' and formMgmtBean.form.status ne 'accepted'}">
+					<br />
+					<h:outputLabel value="comments : " />
+					<h:inputTextarea id="commnetsId"
+						required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
+						requiredMessage="Comments required"
+						value="#{formMgmtBean.reviewComments}" />
+					<h:message for="commnetsId" />
+					<br />
+					<h:commandButton id="acceptBtnId"
+						action="#{formMgmtBean.reviewForm('accepted')}" value="Accept">
+						<f:ajax execute="hisPanId" render="@form" />
+					</h:commandButton>
+					<br />
+					<h:commandButton id="rejectBtnId"
+						action="#{formMgmtBean.reviewForm('rejected')}" value="Reject">
+						<f:ajax execute="hisPanId" render="@form" />
+					</h:commandButton>
+				</h:panelGroup>
+			</h:panelGroup>
 		</h:panelGroup>
-		<h:panelGroup rendered="#{formMgmtBean.pageFlag eq 'view'}">
-			<h:outputLabel value="Code : " />
-			<h:outputText value="#{formMgmtBean.form.formCode}" />
-			<br />
-			<h:outputLabel value="First Name : " />
-			<h:outputText value="#{formMgmtBean.form.firstName}" />
-			<br />
-			<h:outputLabel value="Last Name : " />
-			<h:outputText value="#{formMgmtBean.form.lastName}" />
-			<br />
-			<h:outputLabel value="age : " />
-			<h:outputText value="#{formMgmtBean.form.age}" />
-			<br />
-			<h:commandButton id="downloadBtnId"
-				action="#{formMgmtBean.download()}" value="click here to download" />
+
+
+		<h:outputLink value="admin.xhtml"
+			rendered="#{formMgmtBean.adminPage eq 'adminView'}">Back to admin</h:outputLink>
+		<h:panelGroup id="formReviewHisPanId"
+			rendered="#{not empty formMgmtBean.formReviewHistory}">
+			<h:dataTable id="formHisTblId"
+				value="#{formMgmtBean.formReviewHistory}" styleClass="display"
+				cellspacing="0" width="100%" var="his" binding="#{formHisBnd}">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="S.No." />
+					</f:facet>
+					<h:outputText value="#{formHisBnd.rowIndex + 1}"
+						style="float:right" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Comments" />
+					</f:facet>
+					<div>
+						<h:outputText value="#{his.comments}" />
+					</div>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="status" />
+					</f:facet>
+					<div>
+						<h:outputText value="#{his.status}" />
+					</div>
+				</h:column>
+			</h:dataTable>
 			<script type="text/javascript">
 				$(document).ready(function() {
-					$('#formId\\:downloadBtnId').click();
+					$('#formId\\:formHisTblId').DataTable();
 				});
-			 </script>
+			</script>
 		</h:panelGroup>
 	</h:form>
 </h:body>

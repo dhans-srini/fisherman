@@ -4,69 +4,86 @@ import java.sql.Timestamp;
 
 public class Form {
 
-  private Long id;
-  String formCode;
-  private String type;
-  private String firstName;
-  private String lastName;
-  private String age;
-  private Timestamp createdOn;
+	private Long id;
+	private String formCode;
+	private String type;
+	private String name;
+	private String fathersName;
+	private Boolean married;
+	private String section;
+	private Timestamp createdOn;
+	private String status;
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public String getFormCode() {
-    return formCode;
-  }
+	public String getFormCode() {
+		return formCode;
+	}
 
-  public void setFormCode(String formCode) {
-    this.formCode = formCode;
-  }
+	public void setFormCode(String formCode) {
+		this.formCode = formCode;
+	}
 
-  public String getType() {
-    return type;
-  }
+	public String getType() {
+		return type;
+	}
 
-  public void setType(String type) {
-    this.type = type;
-  }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getFathersName() {
+		return fathersName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setFathersName(String fathersName) {
+		this.fathersName = fathersName;
+	}
 
-  public String getAge() {
-    return age;
-  }
+	public Boolean getMarried() {
+		return married;
+	}
 
-  public void setAge(String age) {
-    this.age = age;
-  }
+	public void setMarried(Boolean married) {
+		this.married = married;
+	}
 
-  public Timestamp getCreatedOn() {
-    return createdOn;
-  }
+	public String getSection() {
+		return section;
+	}
 
-  public void setCreatedOn(Timestamp createdOn) {
-    this.createdOn = createdOn;
-  }
+	public void setSection(String section) {
+		this.section = section;
+	}
 
+	public Timestamp getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Timestamp createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 }

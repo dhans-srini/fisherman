@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Fisherman Admin</title>
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+</h:head>
+<h:body>
+	<h2>Users</h2>
+	<h:form id="userFormsPanId">
+		<h:messages globalOnly="true" />
+		<h:panelGroup id="userViewPanId"
+			rendered="#{userMgmtBean.page eq null}">
+			<h:outputLink value="users.xhtml">
+				<f:param name="page" value="add" />
+			Add User</h:outputLink>
+			<br />
+			<h:outputText value="No recors found"
+				rendered="#{empty userMgmtBean.users}" />
+			<h:dataTable id="usersTblId" value="#{userMgmtBean.users}"
+				styleClass="display" cellspacing="0" width="100%" var="user"
+				rendered="#{not empty userMgmtBean.users}" binding="#{usersTblBnd}">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="S.No." />
+					</f:facet>
+					<h:outputText value="#{usersTblBnd.rowIndex + 1}"
+						style="float:right" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<div>
+						<h:outputText value="#{user.name}" />
+					</div>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="User name" />
+					</f:facet>
+					<div>
+						<h:outputText value="#{user.userName}" />
+					</div>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="status" />
+					</f:facet>
+					<div>
+						<h:outputText value="#{user.isActive?'Active':'Inactive'}" />
+					</div>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<div>
+						<h:outputLink value="users.xhtml">
+							<f:param name="page" value="edit" />
+							<f:param name="userId" value="#{user.id}" />Edit</h:outputLink>
+					</div>
+				</h:column>
+			</h:dataTable>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#userFormsPanId\\:usersTblId').DataTable();
+				});
+			</script>
+		</h:panelGroup>
+		<h:panelGroup id="userAddEditPanId"
+			rendered="#{userMgmtBean.page ne null}">
+			<h:outputText value="Name" />
+			<h:inputText id="nameId" value="#{userMgmtBean.user.name}"
+				required="true" requiredMessage="Name is required" />
+			<h:message for="nameId" />
+			<br />
+			<h:outputText value="User Name" />
+			<h:inputText id="userNameId" value="#{userMgmtBean.user.userName}"
+				required="true" requiredMessage="User Name is required" />
+			<h:message for="userNameId" />
+			<br />
+
+			<h:outputText value="Password" />
+			<h:inputSecret id="pwdId" value="#{userMgmtBean.user.password}"
+				required="true" requiredMessage="Password is required" />
+			<h:message for="pwdId" />
+			<br />
+
+			<h:outputText value="Confirm Password" />
+			<h:inputSecret id="conPwdId" value="#{userMgmtBean.user.confirmPwd}"
+				required="true" requiredMessage="Confirm Password is required" />
+			<h:message for="conPwdId" />
+			<br />
+			<h:outputText value="Status" />
+			<h:selectBooleanCheckbox id="status"
+				value="#{userMgmtBean.user.isActive}" />
+			<br />
+			<h:commandButton rendered="#{userMgmtBean.page eq 'add'}"
+				action="#{userMgmtBean.saveUser()}" value="Save">
+				<f:ajax execute="userAddEditPanId" render="@form" />
+			</h:commandButton>
+			<h:commandButton rendered="#{userMgmtBean.page eq 'edit'}"
+				action="#{userMgmtBean.updateUser()}" value="Save">
+				<f:ajax execute="userAddEditPanId" render="@form" />
+			</h:commandButton>
+		</h:panelGroup>
+	</h:form>
+</h:body>
+</html>

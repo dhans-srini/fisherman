@@ -56,6 +56,12 @@
 
 		<h:panelGroup
 			rendered="#{formMgmtBean.pageFlag eq 'pre-view' or formMgmtBean.pageFlag eq 'view'}">
+			<h:panelGroup
+				rendered="#{formMgmtBean.form.formCode ne null}">
+				<h:outputText value="code : " />
+				<h:outputText value="#{formMgmtBean.form.formCode}" />
+				<br />
+			</h:panelGroup>
 			<h:outputText value="#{label.name} : " />
 			<h:outputText value="#{formMgmtBean.form.name}" />
 			<br />

@@ -18,6 +18,9 @@
 	<h2>Fisherman Admin</h2>
 	<h:form id="userFormsPanId">
 		<h:messages globalOnly="true" />
+		<br />
+		<h:outputLink value="users.xhtml"
+			rendered="#{sessionScope.user.isAdmin}">Manage Users</h:outputLink>
 		<h:panelGroup id="loginPanId" rendered="#{sessionScope.user eq null}">
 			<h:outputLabel value="User name : " />
 			<h:inputText id="userNameId" value="#{adminMgmtBean.userName}"
@@ -48,10 +51,26 @@
 
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="First Name" />
+						<h:outputText value="Name" />
 					</f:facet>
 					<div>
-						<h:outputText value="#{form.firstName}" />
+						<h:outputText value="#{form.name}" />
+					</div>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Father's name" />
+					</f:facet>
+					<div>
+						<h:outputText value="#{form.fathersName}" />
+					</div>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="status" />
+					</f:facet>
+					<div>
+						<h:outputText value="#{form.status}" />
 					</div>
 				</h:column>
 				<h:column>
@@ -59,7 +78,8 @@
 						<h:outputText value="Action" />
 					</f:facet>
 					<div>
-						<h:outputLink value="newForm.xhtml">
+						<h:outputLink value="newForm.xhtml"
+							rendered="#{form.status ne 'accepted'}">
 							<f:param name="pageFlag" value="revieviewExistingForm" />
 							<f:param name="formCode" value="#{form.formCode}" />Review</h:outputLink>
 					</div>

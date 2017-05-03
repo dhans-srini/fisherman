@@ -127,3 +127,28 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2017-05-03 14:11:25
+
+
+-- New columns added  ----------
+
+ALTER TABLE `fisher_man`.`form`   
+  ADD COLUMN `address` TEXT NULL AFTER `status`,
+  ADD COLUMN `biometric_id` VARCHAR(20) NULL AFTER `address`,
+  ADD COLUMN `ration_card_id` VARCHAR(20) NULL AFTER `biometric_id`,
+  ADD COLUMN `voter_id` VARCHAR(20) NULL AFTER `ration_card_id`,
+  ADD COLUMN `adhaar_no` VARCHAR(50) NULL AFTER `voter_id`,
+  ADD COLUMN `national_bank_details` VARCHAR(500) NULL AFTER `adhaar_no`,
+  ADD COLUMN `group_acc_dtls` VARCHAR(500) NULL AFTER `national_bank_details`,
+  ADD COLUMN `coop_bank_dtl` VARCHAR(100) NULL AFTER `group_acc_dtls`,
+  ADD COLUMN `tn_fish_association_dtl` VARCHAR(100) NULL AFTER `coop_bank_dtl`,
+  ADD COLUMN `work_type` VARCHAR(50) NULL AFTER `tn_fish_association_dtl`,
+  ADD COLUMN `is_prev_year_benefitter` TINYINT(1) NULL AFTER `work_type`,
+  ADD COLUMN `benefitted_year` VARCHAR(10) NULL AFTER `is_prev_year_benefitter`,
+  ADD COLUMN `is_benefitter` TINYINT(1) NULL AFTER `benefitted_year`,
+  ADD COLUMN `is_getting_relief_fund` TINYINT(1) NULL AFTER `is_benefitter`;
+  
+  
+  ALTER TABLE `fisher_man`.`form`   
+  CHANGE `is_prev_year_benefitter` `is_prev_year_benefitter` TINYINT(1) DEFAULT 0  NULL,
+  CHANGE `is_benefitter` `is_benefitter` TINYINT(1) DEFAULT 0  NULL,
+  CHANGE `is_getting_relief_fund` `is_getting_relief_fund` TINYINT(1) DEFAULT 0  NULL;

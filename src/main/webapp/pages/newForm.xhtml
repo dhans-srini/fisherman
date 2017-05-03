@@ -31,13 +31,15 @@
 		</h:panelGroup>
 		<h:panelGroup id="newPanId"
 			rendered="#{formMgmtBean.pageFlag eq 'new'}">
-			<h:outputText value="#{label.name} : " />
+			<h:outputText value="#{label.full_name_with_alias_name} : " />
 			<h:inputText id="firstNameId" value="#{formMgmtBean.form.name}"
 				required="true" requiredMessage="First Name is required" />
 			<h:message for="firstNameId" />
 			<br />
+			<br />
 			<h:outputText value="#{label.father_name} : " />
 			<h:inputText value="#{formMgmtBean.form.fathersName}" />
+			<br />
 			<br />
 			<h:outputText value="#{label.is_married} : " />
 			<h:selectOneRadio value="#{formMgmtBean.form.married}">
@@ -45,9 +47,91 @@
 				<f:selectItem itemValue="false" itemLabel="#{label.no}" />
 			</h:selectOneRadio>
 			<br />
-			<h:outputText value="#{label.section} : " />
+			<br />
+			<h:outputText value="#{label.which_section} : " />
 			<h:inputText value="#{formMgmtBean.form.section}" />
 			<br />
+			<br />
+
+
+			<h:outputText value="#{label.fish_man_id_details} : " />
+			<h:inputText value="#{formMgmtBean.form.biometricId}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.ration_card} : " />
+			<h:inputText value="#{formMgmtBean.form.rationCardId}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.voter_id_details} : " />
+			<h:inputText value="#{formMgmtBean.form.voterId}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.adhaar_no} : " />
+			<h:inputText value="#{formMgmtBean.form.adhaarNo}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.national_bank_acc_detail} : " />
+			<h:inputText value="#{formMgmtBean.form.nationalBankDetails}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.group_acc_details} : " />
+			<h:inputText value="#{formMgmtBean.form.groupAccDetails}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.co_opertaive_details} : " />
+			<h:inputText value="#{formMgmtBean.form.cooperativeBankDetails}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.tn_fish_association_no} : " />
+			<h:inputText value="#{formMgmtBean.form.tnFishAssociationDetails}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.fish_work_details} : " />
+			<ul style="list-style: none;">
+				<li>#{label.fuel_boat}</li>
+				<li>#{label.normal_boat}</li>
+				<li>#{label.other}</li>
+			</ul>
+			<h:inputText value="#{formMgmtBean.form.workType}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.last_year_collected_fund} : " />
+			<h:selectOneRadio value="#{formMgmtBean.form.isPrevYearbenefitter}">
+				<f:ajax event="change" execute="@this" render="perfbyselection" />
+				<f:selectItem itemValue="true" itemLabel="#{label.yes}" />
+				<f:selectItem itemValue="false" itemLabel="#{label.no}" />
+			</h:selectOneRadio>
+			<h:panelGroup id="perfbyselection">
+				<h:outputText rendered="#{formMgmtBean.form.isPrevYearbenefitter}"
+					value="#{label.if_yes_from_which_year} : " />
+				<h:inputText rendered="#{formMgmtBean.form.isPrevYearbenefitter}"
+					value="#{formMgmtBean.form.benefittedYear}" />
+			</h:panelGroup>
+
+			<br />
+			<br />
+
+			<h:outputText value="#{label.is_benifiter} : " />
+			<h:selectOneRadio value="#{formMgmtBean.form.isBenefitter}">
+				<f:selectItem itemValue="true" itemLabel="#{label.yes}" />
+				<f:selectItem itemValue="false" itemLabel="#{label.no}" />
+			</h:selectOneRadio>
+
+			<h:outputText value="#{label.geeting_2000} : " />
+			<h:selectOneRadio value="#{formMgmtBean.form.isGettingReliefFund}">
+				<f:selectItem itemValue="true" itemLabel="#{label.yes}" />
+				<f:selectItem itemValue="false" itemLabel="#{label.no}" />
+			</h:selectOneRadio>
+
 			<h:commandButton action="#{formMgmtBean.setPageFlag('pre-view')}"
 				value="Preview">
 				<f:ajax execute="newPanId" render="@form" />
@@ -56,8 +140,7 @@
 
 		<h:panelGroup
 			rendered="#{formMgmtBean.pageFlag eq 'pre-view' or formMgmtBean.pageFlag eq 'view'}">
-			<h:panelGroup
-				rendered="#{formMgmtBean.form.formCode ne null}">
+			<h:panelGroup rendered="#{formMgmtBean.form.formCode ne null}">
 				<h:outputText value="code : " />
 				<h:outputText value="#{formMgmtBean.form.formCode}" />
 				<br />
@@ -69,10 +152,74 @@
 			<h:outputText value="#{formMgmtBean.form.fathersName}" />
 			<br />
 			<h:outputText value="#{label.is_married} : " />
-			<h:outputText value="#{formMgmtBean.form.married}" />
+			<h:outputText
+				value="#{formMgmtBean.form.married ? label.yes : label.no}" />
 			<br />
-			<h:outputText value="#{label.section} : " />
+			<h:outputText value="#{label.which_section} : " />
 			<h:outputText value="#{formMgmtBean.form.section}" />
+			<br />
+			<h:outputText value="#{label.fish_man_id_details} : " />
+			<h:outputText value="#{formMgmtBean.form.biometricId}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.ration_card} : " />
+			<h:outputText value="#{formMgmtBean.form.rationCardId}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.voter_id_details} : " />
+			<h:outputText value="#{formMgmtBean.form.voterId}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.adhaar_no} : " />
+			<h:outputText value="#{formMgmtBean.form.adhaarNo}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.national_bank_acc_detail} : " />
+			<h:outputText value="#{formMgmtBean.form.nationalBankDetails}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.group_acc_details} : " />
+			<h:outputText value="#{formMgmtBean.form.groupAccDetails}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.co_opertaive_details} : " />
+			<h:outputText value="#{formMgmtBean.form.cooperativeBankDetails}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.tn_fish_association_no} : " />
+			<h:outputText value="#{formMgmtBean.form.tnFishAssociationDetails}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.fish_work_details} : " />
+			<h:outputText value="#{formMgmtBean.form.workType}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.last_year_collected_fund} : " />
+			<h:outputText
+				value="#{formMgmtBean.form.isPrevYearbenefitter ? label.yes : label.no} " />
+			<h:outputText rendered="#{formMgmtBean.form.isPrevYearbenefitter}"
+				value="#{formMgmtBean.form.benefittedYear}" />
+			<br />
+			<br />
+
+			<h:outputText value="#{label.is_benifiter} : " />
+			<h:outputText
+				value="#{formMgmtBean.form.isBenefitter ? label.yes : label.no}" />
+			<br />
+			<br />
+			<h:outputText value="#{label.geeting_2000} : " />
+			<h:outputText
+				value="#{formMgmtBean.form.isGettingReliefFund ? label.yes : label.no}" />
+			<br />
 			<br />
 			<h:panelGroup rendered="#{formMgmtBean.pageFlag eq 'pre-view'}">
 				<h:commandButton action="#{formMgmtBean.save}" value="save">
@@ -151,7 +298,7 @@
 				</h:column>
 			</h:dataTable>
 			<script type="text/javascript">
-				$(document).ready(function() {
+				$(document).ready(function(){
 					$('#formId\\:formHisTblId').DataTable();
 				});
 			</script>

@@ -31,6 +31,8 @@
 	<style>
 body {
 	background: #F8F8F8;
+	font-family: "Segoe UI", Georgia, Serif;
+	font-size: 12px;
 }
 
 select {
@@ -39,8 +41,8 @@ select {
 	line-height: inherit;
 	width: 40%;
 	height: 34px;
-	padding: 6px 12px;
-	font-size: 14px;
+	padding: 6px 1px;
+	font-size: 12px;
 	line-height: 1.42857143;
 	color: #555;
 	background-color: #fff;
@@ -61,7 +63,14 @@ select {
 <h:body>
 	<section class="main boxshadow">
 	<div class="row">
-		<h3 style="color: #ff6600; margin: 44px;"><h:outputText value="#{label.title}" /></h3>
+		<center><img src="../imgs/tn-govt-logo.jpg" alt="Govt. of Tamilnadu" /></center>
+	</div>
+	<div class="row">
+		<h3 style="color: #ff6600; margin: 22px;">
+			<h:outputText value="#{label.title}" />
+		</h3>
+	</div>
+	<div class="row"><hr/>
 	</div>
 	<div class="row">
 		<h:form id="formId" style="font-size: 11px;">
@@ -453,8 +462,7 @@ select {
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 								value="#{label.code}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
-							<h:outputText value="#{formMgmtBean.form.formCode}"
-								  />
+							<h:outputText value="#{formMgmtBean.form.formCode}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -476,8 +484,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.village}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.village}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.village}" />
 					</div>
 				</div>
 
@@ -485,8 +492,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.circle}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.taluk}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.taluk}" />
 					</div>
 				</div>
 
@@ -494,16 +500,14 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.District}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.district}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.district}" />
 					</div>
 				</div>
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.full_name_with_alias_name}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.name}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.name}" />
 					</div>
 				</div>
 
@@ -511,8 +515,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.father_name}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.fathersName}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.fathersName}" />
 					</div>
 				</div>
 
@@ -522,8 +525,7 @@ select {
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 								value="#{label.age}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
-							<h:outputText value="#{formMgmtBean.form.age}"
-								 />
+							<h:outputText value="#{formMgmtBean.form.age}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -532,8 +534,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.address}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.address}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.address}" />
 					</div>
 				</div>
 
@@ -542,8 +543,7 @@ select {
 							value="#{label.is_married}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText
-							value="#{formMgmtBean.form.married?label.yes:label.no}"
-							 />
+							value="#{formMgmtBean.form.married?label.yes:label.no}" />
 					</div>
 				</div>
 
@@ -552,13 +552,13 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.which_section}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{label.bc}" 
+						<h:outputText value="#{label.bc}"
 							rendered="#{formMgmtBean.form.section eq 'bc'}" />
-						<h:outputText value="#{label.mbc}" 
+						<h:outputText value="#{label.mbc}"
 							rendered="#{formMgmtBean.form.section eq 'mbc'}" />
-						<h:outputText value="#{label.sc}" 
+						<h:outputText value="#{label.sc}"
 							rendered="#{formMgmtBean.form.section eq 'sc'}" />
-						<h:outputText value="#{label.st}" 
+						<h:outputText value="#{label.st}"
 							rendered="#{formMgmtBean.form.section eq 'st'}" />
 					</div>
 				</div>
@@ -569,8 +569,7 @@ select {
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 								value="#{label.income_det}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
-							<h:outputText value="#{formMgmtBean.form.incomeDet}"
-								 />
+							<h:outputText value="#{formMgmtBean.form.incomeDet}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -579,8 +578,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.fish_man_id_details}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.biometricId}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.biometricId}" />
 					</div>
 				</div>
 
@@ -592,8 +590,7 @@ select {
 								value="#{label.if_not_fisher_id_app_form_for_fisher_id}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
-								value="#{formMgmtBean.form.biometricAppFormDetails}"
-								 />
+								value="#{formMgmtBean.form.biometricAppFormDetails}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -602,8 +599,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.ration_card}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.rationCardId}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.rationCardId}" />
 					</div>
 				</div>
 
@@ -612,8 +608,7 @@ select {
 							value="#{label.voter_id_details}" />
 					</label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.voterId}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.voterId}" />
 					</div>
 				</div>
 
@@ -621,8 +616,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.adhaar_no}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.adhaarNo}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.adhaarNo}" />
 					</div>
 				</div>
 
@@ -630,8 +624,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.national_bank_acc_detail}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.nationalBankDetails}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.nationalBankDetails}" />
 					</div>
 				</div>
 
@@ -640,8 +633,7 @@ select {
 							value="#{label.group_acc_details}" />
 					</label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.groupAccDetails}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.groupAccDetails}" />
 					</div>
 				</div>
 
@@ -649,8 +641,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.co_opertaive_details}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.cooperativeBankDetails}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.cooperativeBankDetails}" />
 					</div>
 				</div>
 
@@ -662,8 +653,7 @@ select {
 								value="#{label.tn_fish_association_no}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
-								value="#{formMgmtBean.form.tnFishAssociationDetails}"
-								 />
+								value="#{formMgmtBean.form.tnFishAssociationDetails}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -687,8 +677,7 @@ select {
 							<h:outputText value="#{label.boat_owner_cer_details}" />
 						</h:panelGroup></label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.workType}"
-							 />
+						<h:outputText value="#{formMgmtBean.form.workType}" />
 					</div>
 				</div>
 				<h:panelGroup
@@ -698,8 +687,7 @@ select {
 								value="#{label.last_year_collected_fund}" /></label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
-								value="#{formMgmtBean.form.isPrevYearbenefitter?label.yes:label.no}"
-								 />
+								value="#{formMgmtBean.form.isPrevYearbenefitter?label.yes:label.no}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -710,8 +698,7 @@ select {
 							<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 									value="#{label.if_yes_from_which_year} " /></label>
 							<div class="col-lg-8 col-md-8 col-sm-8">
-								<h:outputText value="#{formMgmtBean.form.benefittedYear}"
-									 />
+								<h:outputText value="#{formMgmtBean.form.benefittedYear}" />
 							</div>
 						</div>
 					</h:panelGroup>
@@ -724,8 +711,7 @@ select {
 								value="#{label.is_benifiter}" /></label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
-								value="#{formMgmtBean.form.isBenefitter?label.yes:label.no}"
-								 />
+								value="#{formMgmtBean.form.isBenefitter?label.yes:label.no}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -737,8 +723,7 @@ select {
 								value="#{label.geeting_2000}" /></label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
-								value="#{formMgmtBean.form.isGettingReliefFund?label.yes:label.no}"
-								 />
+								value="#{formMgmtBean.form.isGettingReliefFund?label.yes:label.no}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -750,8 +735,7 @@ select {
 								value="#{label.is_fulltime_fisherman}" /></label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
-								value="#{formMgmtBean.form.isFullTimeFisherman?label.yes:label.no}"
-								 />
+								value="#{formMgmtBean.form.isFullTimeFisherman?label.yes:label.no}" />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -761,13 +745,13 @@ select {
 						<div class="col-lg-4 col-md-4 col-sm-4 "></div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
 							<h:commandButton style="float: right;"
-								action="#{formMgmtBean.setPageFlag('new')}" value="edit"
+								action="#{formMgmtBean.setPageFlag('new')}" value="Edit"
 								styleClass="btn btn-primary">
 								<f:ajax execute="newPanId" render="@form" />
 							</h:commandButton>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-							<h:commandButton action="#{formMgmtBean.save}" value="save"
+							<h:commandButton action="#{formMgmtBean.save}" value="Save"
 								styleClass="btn btn-primary">
 								<f:ajax execute="newPanId" render="@form" />
 							</h:commandButton>

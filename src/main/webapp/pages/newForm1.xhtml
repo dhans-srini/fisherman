@@ -31,6 +31,8 @@
 	<style>
 body {
 	background: #F8F8F8;
+	font-family: "Segoe UI", Georgia, Serif;
+	font-size: 12px;
 }
 
 .msg-style {
@@ -55,8 +57,8 @@ select {
 	line-height: inherit;
 	width: 40%;
 	height: 34px;
-	padding: 6px 12px;
-	font-size: 14px;
+	padding: 6px 1px;
+	font-size: 12px;
 	line-height: 1.42857143;
 	color: #555;
 	background-color: #fff;
@@ -77,9 +79,14 @@ select {
 <h:body>
 	<section class="main boxshadow">
 	<div class="row">
-		<h3 style="color: #ff6600; margin: 44px;">
+		<center><img src="../imgs/tn-govt-logo.jpg" alt="Govt. of Tamilnadu" /></center>
+	</div>
+	<div class="row">
+		<h3 style="color: #ff6600; margin: 22px;">
 			<h:outputText value="#{label.title}" />
 		</h3>
+	</div>
+	<div class="row"><hr/>
 	</div>
 	<div class="row">
 		<h:form id="formId">

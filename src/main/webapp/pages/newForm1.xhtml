@@ -59,6 +59,20 @@ body {
 				</div>
 			</h:panelGroup>
 
+			<div class="form-group col-sm-12 ">
+				<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+						value="#{label.form_type}" /> </label>
+				<div class="col-lg-8 col-md-8 col-sm-8">
+					<h:selectOneMenu value="#{formMgmtBean.form.type}">
+						<f:selectItem value="#{spl_allowance}"
+							itemLabel="#{label.spl_allowance}" />
+						<f:selectItem value="#{fishing_ban_relief}"
+							itemLabel="#{label.fishing_ban_relief}" />
+						<f:selectItem value="#{nfsrs}" itemLabel="#{label.nfsrs}" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+
 			<h:panelGroup id="newPanId"
 				rendered="#{formMgmtBean.pageFlag eq 'new'}">
 

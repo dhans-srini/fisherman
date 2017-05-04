@@ -431,8 +431,14 @@ body {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.which_section}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.section}"
-							styleClass="form-control" />
+						<h:outputText value="#{label.bc}" styleClass="form-control"
+							rendered="#{formMgmtBean.form.section eq 'bc'}" />
+						<h:outputText value="#{label.mbc}" styleClass="form-control"
+							rendered="#{formMgmtBean.form.section eq 'mbc'}" />
+						<h:outputText value="#{label.sc}" styleClass="form-control"
+							rendered="#{formMgmtBean.form.section eq 'sc'}" />
+						<h:outputText value="#{label.st}" styleClass="form-control"
+							rendered="#{formMgmtBean.form.section eq 'st'}" />
 					</div>
 				</div>
 

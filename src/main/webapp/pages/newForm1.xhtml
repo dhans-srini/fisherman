@@ -79,22 +79,24 @@ select {
 <h:body>
 	<section class="main boxshadow">
 	<div class="row">
-		<center><img src="../imgs/tn-govt-logo.jpg" alt="Govt. of Tamilnadu" /></center>
+		<center>
+			<img src="../imgs/tn-govt-logo.jpg" alt="Govt. of Tamilnadu" />
+		</center>
 	</div>
 	<div class="row">
 		<h3 style="color: #ff6600; margin: 22px;">
 			<h:outputText value="#{label.title}" />
 		</h3>
 	</div>
-	<div class="row"><hr/>
+	<div class="row">
+		<hr />
 	</div>
 	<div class="row">
 		<h:form id="formId">
 			<div class="col-sm-12">
 				<h:messages globalOnly="true" styleClass="msg-style"
 					errorClass="error-msg" infoClass="success-msg" />
-				<c:if
-					test="#{formMgmtBean.pageScript eq 'formSave'}">
+				<c:if test="#{formMgmtBean.pageScript eq 'formSave'}">
 					<span style="margin-left: 35px" class="success-msg"> Form
 						saved successfully, <a href="javascript:return false;"
 						onclick="$('#formId\\:downloadBtnId').click();">Click here</a> to
@@ -150,6 +152,8 @@ select {
 							<f:selectItem itemValue="fishing_ban_relief"
 								itemLabel="#{label.fishing_ban_relief}" />
 							<f:selectItem itemValue="nfsrs" itemLabel="#{label.nfsrs}" />
+							<f:selectItem itemValue="nfsrs_woman"
+								itemLabel="#{label.nfsrs_woman}" />
 						</h:selectOneMenu>
 						<h:message for="formTypeId" />
 						<c:if test="#{formMgmtBean.form.id ne null}">
@@ -159,6 +163,8 @@ select {
 								rendered="#{formMgmtBean.form.type eq 'fishing_ban_relief'}" />
 							<h:outputText value="#{label.nfsrs}"
 								rendered="#{formMgmtBean.form.type eq 'nfsrs'}" />
+							<h:outputText value="#{label.nfsrs_woman}"
+								rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" />
 						</c:if>
 					</div>
 				</div>
@@ -200,7 +206,10 @@ select {
 				</div>
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="#{label.full_name_with_alias_name}" /> </label>
+							value="#{label.full_name_with_alias_name}"
+							rendered="#{formMgmtBean.form.type ne 'nfsrs_woman'}" /> <h:outputText
+							value="#{label.fisher_woman_name}"
+							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText id="firstNameId" value="#{formMgmtBean.form.name}"
 							styleClass="form-control"
@@ -212,7 +221,10 @@ select {
 
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="#{label.father_name}" /> </label>
+							value="#{label.father_name}"
+							rendered="#{formMgmtBean.form.type ne 'nfsrs_woman'}" /> <h:outputText
+							value="#{label.fisher_woman_father_husbend_name}"
+							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText value="#{formMgmtBean.form.fathersName}"
 							styleClass="form-control" />

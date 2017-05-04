@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Registration Form</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/bootstrap-theme.css" rel="stylesheet" />
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<style>
+body {
+	background: #F8F8F8;
+}
+</style>
+</h:head>
+
+<h:body>
+	<section class="main boxshadow">
+	<div class="row">
+		<h3 style="color: #ff6600; margin: 44px;">Registration Form</h3>
+	</div>
+	<div class="row">
+		<h:form id="formId">
+			<h:messages globalOnly="true" />
+			<h:panelGroup id="codePanId"
+				rendered="#{formMgmtBean.pageFlag eq 'viewExistingForm'}">
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4">Code
+					</label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText id="formCodeId" value="#{formMgmtBean.formCode}"
+							required="true" requiredMessage="Form code is required"
+							styleClass="form-control" />
+					</div>
+				</div>
+				<div style="margin-top: 13px;" class="form-group col-sm-12">
+					<div class="col-lg-4 col-md-4 col-sm-4 "></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+						<button style="float: right;" class="btn btn-primary">Back</button>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+						<h:commandButton action="#{formMgmtBean.loadForm()}"
+							value="Submit" styleClass="btn btn-primary">
+							<f:ajax execute="codePanId" render="@form" />
+						</h:commandButton>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2"></div>
+				</div>
+			</h:panelGroup>
+
+			<h:panelGroup id="newPanId"
+				rendered="#{formMgmtBean.pageFlag eq 'new'}">
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.full_name_with_alias_name}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText id="firstNameId" value="#{formMgmtBean.form.name}"
+							styleClass="form-control" required="true"
+							requiredMessage="First Name is required" />
+						<h:message for="firstNameId" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.father_name}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.fathersName}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.is_married}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:selectOneRadio value="#{formMgmtBean.form.married}"
+							styleClass="sin">
+							<f:selectItem itemValue="true" itemLabel="#{label.yes}" />
+							<f:selectItem itemValue="false" itemLabel="#{label.no}" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.which_section}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:selectOneRadio value="#{formMgmtBean.form.section}"
+							styleClass="sin">
+							<f:selectItem itemValue="bc" itemLabel="#{label.bc}" />
+							<f:selectItem itemValue="mbc" itemLabel="#{label.mbc}" />
+							<f:selectItem itemValue="sc" itemLabel="#{label.sc}" />
+							<f:selectItem itemValue="st" itemLabel="#{label.st}" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.fish_man_id_details}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.biometricId}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.ration_card}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.rationCardId}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"> <h:outputText
+							value="#{label.voter_id_details}" />
+					</label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.voterId}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.adhaar_no}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.adhaarNo}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.national_bank_acc_detail}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.nationalBankDetails}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"> <h:outputText
+							value="#{label.group_acc_details}" />
+					</label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.groupAccDetails}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.co_opertaive_details}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.cooperativeBankDetails}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.tn_fish_association_no}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.tnFishAssociationDetails}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.fish_work_details}" />
+						<ul style="list-style: none;">
+							<li>#{label.fuel_boat}</li>
+							<li>#{label.normal_boat}</li>
+							<li>#{label.other}</li>
+						</ul> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText value="#{formMgmtBean.form.workType}"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.last_year_collected_fund}" /></label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:selectOneRadio
+							value="#{formMgmtBean.form.isPrevYearbenefitter}"
+							styleClass="sin">
+							<f:ajax event="change" execute="@this" render="perfbyselection" />
+							<f:selectItem itemValue="true" itemLabel="#{label.yes}" />
+							<f:selectItem itemValue="false" itemLabel="#{label.no}" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+				<h:panelGroup id="perfbyselection">
+					<h:panelGroup rendered="#{formMgmtBean.form.isPrevYearbenefitter}">
+						<div class="form-group col-sm-12 ">
+							<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+									value="#{label.if_yes_from_which_year} " /></label>
+							<div class="col-lg-8 col-md-8 col-sm-8">
+								<h:inputText value="#{formMgmtBean.form.benefittedYear}"
+									styleClass="form-control" />
+							</div>
+						</div>
+					</h:panelGroup>
+				</h:panelGroup>
+
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.is_benifiter}" /></label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:selectOneRadio value="#{formMgmtBean.form.isBenefitter}"
+							styleClass="sin">
+							<f:selectItem itemValue="true" itemLabel="#{label.yes}" />
+							<f:selectItem itemValue="false" itemLabel="#{label.no}" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.geeting_2000}" /></label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:selectOneRadio value="#{formMgmtBean.form.isGettingReliefFund}"
+							styleClass="sin">
+							<f:selectItem itemValue="true" itemLabel="#{label.yes}" />
+							<f:selectItem itemValue="false" itemLabel="#{label.no}" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+
+				<div style="margin-top: 13px;" class="form-group col-sm-12">
+					<div class="col-lg-4 col-md-4 col-sm-4 "></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+						<button style="float: right;" class="btn btn-primary">Back</button>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+						<h:commandButton action="#{formMgmtBean.setPageFlag('pre-view')}"
+							styleClass="btn btn-primary" value="Preview">
+							<f:ajax execute="newPanId" render="@form" />
+						</h:commandButton>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2"></div>
+				</div>
+			</h:panelGroup>
+
+
+
+		</h:form>
+	</div>
+	</section>
+</h:body>
+</html>

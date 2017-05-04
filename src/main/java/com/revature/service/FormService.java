@@ -174,7 +174,7 @@ public class FormService {
     Class.forName("com.mysql.jdbc.Driver");
     return DriverManager.getConnection(
         "jdbc:mysql://localhost:3306/fisher_man?autoReconnect=true&zeroDateTimeBehavior=convertToNull",
-        "root", "pass123$");
+        "root", "root");
   }
 
   public List<FormReviewHistory> getFormReviewHistory(String formCode) throws BusinessException {

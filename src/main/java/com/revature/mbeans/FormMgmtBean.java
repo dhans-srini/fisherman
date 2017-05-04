@@ -3,8 +3,11 @@ package com.revature.mbeans;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -12,22 +15,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import com.itextpdf.text.Chapter;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.aspose.words.Document;
+import com.aspose.words.FontSettings;
+import com.aspose.words.SaveFormat;
 import com.revature.models.Form;
 import com.revature.models.FormReviewHistory;
+import com.revature.models.User;
 import com.revature.service.FormService;
 import com.revature.utils.Utils;
 
@@ -146,7 +139,8 @@ public class FormMgmtBean {
 			his.setStatus(status);
 			his.setFormId(form.getId());
 			his.setReviewedBy(
-					(Long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userId"));
+					((User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user"))
+							.getId());
 			his.setReviewedOn(new Date());
 			formService.saveReviewHistory(his);
 			loadForm();
@@ -172,52 +166,21 @@ public class FormMgmtBean {
 		}
 	}
 
-	public void createPdf(OutputStream output, Form frm) throws DocumentException, IOException {
+	public void createPdf(OutputStream output, Form frm) throws Exception {
 
-		ResourceBundle mybundle = ResourceBundle.getBundle("pageLabels");
+		String baseLocataion = "E:\\Revature Development\\Git workspace\\fisherman-govt\\";
+		FontSettings.getDefaultInstance().setFontsFolder(baseLocataion + "fonts", true);
 
-		Document document = new Document(PageSize.A5.rotate());
-		PdfWriter.getInstance(document, output);
-		document.open();
-
-		Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC);
-		Chunk chunk = new Chunk("Fisher man", chapterFont);
-		Paragraph paragraph = new Paragraph(chunk);
-		paragraph.setAlignment(Element.ALIGN_CENTER);
-
-		Chapter chapter = new Chapter(paragraph, 1);
-		chapter.setNumberDepth(0);
-		document.add(chapter);
-
-		document.add(Chunk.NEWLINE);
-
-		// creating form fields
-		PdfPTable table = new PdfPTable(2);
-		table.setTotalWidth(new float[] { 72, 216 });
-		Phrase p;
-		PdfPCell cell;
-		Font f = FontFactory.getFont("D:\\FreeSans.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-		table.addCell(new Phrase(mybundle.getString("name"), f));
-		p = new Phrase(frm.getName());
-		cell = new PdfPCell(p);
-		table.addCell(cell);
-
-		table.addCell(new Phrase(mybundle.getString("father_name"), f));
-		p = new Phrase(frm.getFathersName());
-		cell = new PdfPCell(p);
-		table.addCell(cell);
-
-		table.addCell(new Phrase(mybundle.getString("section"), f));
-		p = new Phrase(frm.getSection());
-		cell = new PdfPCell(p);
-		table.addCell(cell);
-
-		table.addCell(new Phrase(mybundle.getString("is_married"), f));
-		p = new Phrase(frm.getMarried() ? mybundle.getString("yes") : mybundle.getString("no"), f);
-		cell = new PdfPCell(p);
-		table.addCell(cell);
-
-		document.add(table);
-		document.close();
+		Set<String> keys = new LinkedHashSet<>();
+		keys.add("name");
+		keys.add("father_name");
+		keys.add("address");
+		List<String> values = new LinkedList<>();
+		values.add(frm.getName());
+		values.add(frm.getFathersName());
+		values.add(frm.getSection());
+		Document doc = new Document(baseLocataion + "\\template\\inori.docx");
+		doc.getMailMerge().execute(keys.toArray(new String[0]), values.toArray());
+		doc.save(output, SaveFormat.PDF);
 	}
 }

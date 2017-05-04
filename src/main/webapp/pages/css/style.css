@@ -1,0 +1,39 @@
+
+h3 { 
+color:rgb(204, 51, 0);
+text-align:center;
+FONT-FAMILY: verdana;
+}
+.req {
+color:red;
+}
+.main {
+width: 70%;
+margin:0 auto;
+}
+.check {
+	padding-right:10px;
+}
+.check1{
+	padding-right:10px;
+}
+.group_name{
+    position: relative;
+    top: 3px;
+}
+.cast{
+	 position: relative;
+    top: 2px;
+}
+.sin{
+	 position: relative;
+    top: 2px;
+}
+.boxshadow {
+    border:1px solid #ededed;
+    padding: 20px;
+    background: #fff;
+	margin-top: 4%;
+    margin-bottom: 4%;
+	padding: 20px;
+}

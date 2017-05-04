@@ -9,11 +9,14 @@ public class Form {
   private String type;
   private String name;
   private String fathersName;
+  private String age;
+  private String incomeDet;
   private Boolean married;
   private String section;
   private Timestamp createdOn;
   private String address;
   private String biometricId;
+  private String biometricAppFormDetails;
   private String rationCardId;
   private String voterId;
   private String adhaarNo;
@@ -26,6 +29,7 @@ public class Form {
   private String benefittedYear;
   private Boolean isBenefitter;
   private Boolean isGettingReliefFund;
+  private Boolean isFullTimeFisherman;
   private String status;
 
   public Long getId() {
@@ -66,6 +70,22 @@ public class Form {
 
   public void setFathersName(String fathersName) {
     this.fathersName = fathersName;
+  }
+
+  public String getAge() {
+    return age;
+  }
+
+  public void setAge(String age) {
+    this.age = age;
+  }
+
+  public String getIncomeDet() {
+    return incomeDet;
+  }
+
+  public void setIncomeDet(String incomeDet) {
+    this.incomeDet = incomeDet;
   }
 
   public Boolean getMarried() {
@@ -114,6 +134,14 @@ public class Form {
 
   public void setBiometricId(String biometricId) {
     this.biometricId = biometricId;
+  }
+
+  public String getBiometricAppFormDetails() {
+    return biometricAppFormDetails;
+  }
+
+  public void setBiometricAppFormDetails(String biometricAppFormDetails) {
+    this.biometricAppFormDetails = biometricAppFormDetails;
   }
 
   public String getRationCardId() {
@@ -211,6 +239,15 @@ public class Form {
   public void setIsGettingReliefFund(Boolean isGettingReliefFund) {
     this.isGettingReliefFund = isGettingReliefFund;
   }
+
+  public Boolean getIsFullTimeFisherman() {
+    return isFullTimeFisherman;
+  }
+
+  public void setIsFullTimeFisherman(Boolean isFullTimeFisherman) {
+    this.isFullTimeFisherman = isFullTimeFisherman;
+  }
+
 
 
 }

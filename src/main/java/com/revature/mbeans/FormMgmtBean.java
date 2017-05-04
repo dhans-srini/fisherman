@@ -100,6 +100,7 @@ public class FormMgmtBean {
 		pageFlag = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("pageFlag");
 		if ("new".equals(pageFlag)) {
 			form = new Form();
+			form.setType("spl_allowance");
 		} else if ("revieviewExistingForm".equals(pageFlag)) {
 			this.formCode = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
 					.get("formCode");
@@ -124,7 +125,7 @@ public class FormMgmtBean {
 
 	public void save() {
 		try {
-			formService.saveForm(form);
+		//	formService.saveForm(form);
 			pageFlag = "view";
 			Utils.addInfoMessage("Form saved successfully");
 		} catch (Exception e) {

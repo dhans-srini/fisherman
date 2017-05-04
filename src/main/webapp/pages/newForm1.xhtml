@@ -3,24 +3,57 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Tamilnadu Fisherman</title>
+	<title><h:outputText value="#{label.title}" /></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link href="css/bootstrap.css" rel="stylesheet" />
 	<link href="css/bootstrap-theme.css" rel="stylesheet" />
-	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css"
 		href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 	<style>
 body {
 	background: #F8F8F8;
+}
+
+select {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	width: 40%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 </style>
 </h:head>
@@ -28,10 +61,10 @@ body {
 <h:body>
 	<section class="main boxshadow">
 	<div class="row">
-		<h3 style="color: #ff6600; margin: 44px;">Tamilnadu Fisherman</h3>
+		<h3 style="color: #ff6600; margin: 44px;"><h:outputText value="#{label.title}" /></h3>
 	</div>
 	<div class="row">
-		<h:form id="formId">
+		<h:form id="formId" style="font-size: 11px;">
 			<h:messages globalOnly="true" />
 			<h:panelGroup id="codePanId"
 				rendered="#{formMgmtBean.pageFlag eq 'viewExistingForm'}">
@@ -66,7 +99,9 @@ body {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.form_type}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:selectOneMenu value="#{formMgmtBean.form.type}">
+						<h:selectOneMenu id="formTypeId" value="#{formMgmtBean.form.type}"
+							required="true" requiredMessage="Form type is required"
+							rendered="#{formMgmtBean.form.id eq null}">
 							<f:ajax execute="newPanId" render="newPanId" />
 							<f:selectItem itemValue="spl_allowance"
 								itemLabel="#{label.spl_allowance}" />
@@ -74,6 +109,51 @@ body {
 								itemLabel="#{label.fishing_ban_relief}" />
 							<f:selectItem itemValue="nfsrs" itemLabel="#{label.nfsrs}" />
 						</h:selectOneMenu>
+						<h:message for="formTypeId" />
+						<c:if test="#{formMgmtBean.form.id ne null}">
+							<h:outputText value="#{label.spl_allowance}"
+								rendered="#{formMgmtBean.form.type eq 'spl_allowance'}" />
+							<h:outputText value="#{label.fishing_ban_relief}"
+								rendered="#{formMgmtBean.form.type eq 'fishing_ban_relief'}" />
+							<h:outputText value="#{label.nfsrs}"
+								rendered="#{formMgmtBean.form.type eq 'nfsrs'}" />
+						</c:if>
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.village}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText id="villageId" value="#{formMgmtBean.form.village}"
+							styleClass="form-control"
+							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
+							requiredMessage="Village is required" />
+						<h:message for="villageId" style="color: red;" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.circle}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText id="talukId" value="#{formMgmtBean.form.taluk}"
+							styleClass="form-control"
+							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
+							requiredMessage="Taluk is required" />
+						<h:message for="talukId" style="color: red;" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.District}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText id="districtId" value="#{formMgmtBean.form.district}"
+							styleClass="form-control"
+							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
+							requiredMessage="District is required" />
+						<h:message for="districtId" style="color: red;" />
 					</div>
 				</div>
 				<div class="form-group col-sm-12 ">
@@ -82,8 +162,9 @@ body {
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText id="firstNameId" value="#{formMgmtBean.form.name}"
 							styleClass="form-control"
+							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
 							requiredMessage="First Name is required" />
-						<h:message for="firstNameId" />
+						<h:message for="firstNameId" style="color: red;" />
 					</div>
 				</div>
 
@@ -354,7 +435,8 @@ body {
 						<button style="float: right;" class="btn btn-primary">Back</button>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-						<h:commandButton action="#{formMgmtBean.setPageFlag('pre-view')}"
+						<h:commandButton id="preview-btn-id"
+							action="#{formMgmtBean.setPageFlag('pre-view')}"
 							styleClass="btn btn-primary" value="Preview">
 							<f:ajax execute="newPanId" render="@form" />
 						</h:commandButton>
@@ -372,17 +454,56 @@ body {
 								value="#{label.code}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText value="#{formMgmtBean.form.formCode}"
-								styleClass="form-control" />
+								  />
 						</div>
 					</div>
 				</h:panelGroup>
 
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.form_type}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:outputText value="#{label.spl_allowance}"
+							rendered="#{formMgmtBean.form.type eq 'spl_allowance'}" />
+						<h:outputText value="#{label.fishing_ban_relief}"
+							rendered="#{formMgmtBean.form.type eq 'fishing_ban_relief'}" />
+						<h:outputText value="#{label.nfsrs}"
+							rendered="#{formMgmtBean.form.type eq 'nfsrs'}" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.village}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:outputText value="#{formMgmtBean.form.village}"
+							 />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.circle}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:outputText value="#{formMgmtBean.form.taluk}"
+							 />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.District}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:outputText value="#{formMgmtBean.form.district}"
+							 />
+					</div>
+				</div>
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.full_name_with_alias_name}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.name}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -391,7 +512,7 @@ body {
 							value="#{label.father_name}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.fathersName}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -402,7 +523,7 @@ body {
 								value="#{label.age}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText value="#{formMgmtBean.form.age}"
-								styleClass="form-control" />
+								 />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -412,7 +533,7 @@ body {
 							value="#{label.address}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.address}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -422,7 +543,7 @@ body {
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText
 							value="#{formMgmtBean.form.married?label.yes:label.no}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -431,13 +552,13 @@ body {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.which_section}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{label.bc}" styleClass="form-control"
+						<h:outputText value="#{label.bc}" 
 							rendered="#{formMgmtBean.form.section eq 'bc'}" />
-						<h:outputText value="#{label.mbc}" styleClass="form-control"
+						<h:outputText value="#{label.mbc}" 
 							rendered="#{formMgmtBean.form.section eq 'mbc'}" />
-						<h:outputText value="#{label.sc}" styleClass="form-control"
+						<h:outputText value="#{label.sc}" 
 							rendered="#{formMgmtBean.form.section eq 'sc'}" />
-						<h:outputText value="#{label.st}" styleClass="form-control"
+						<h:outputText value="#{label.st}" 
 							rendered="#{formMgmtBean.form.section eq 'st'}" />
 					</div>
 				</div>
@@ -449,7 +570,7 @@ body {
 								value="#{label.income_det}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText value="#{formMgmtBean.form.incomeDet}"
-								styleClass="form-control" />
+								 />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -459,7 +580,7 @@ body {
 							value="#{label.fish_man_id_details}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.biometricId}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -472,7 +593,7 @@ body {
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
 								value="#{formMgmtBean.form.biometricAppFormDetails}"
-								styleClass="form-control" />
+								 />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -482,7 +603,7 @@ body {
 							value="#{label.ration_card}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.rationCardId}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -492,7 +613,7 @@ body {
 					</label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.voterId}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -501,7 +622,7 @@ body {
 							value="#{label.adhaar_no}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.adhaarNo}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -510,7 +631,7 @@ body {
 							value="#{label.national_bank_acc_detail}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.nationalBankDetails}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -520,7 +641,7 @@ body {
 					</label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.groupAccDetails}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -529,7 +650,7 @@ body {
 							value="#{label.co_opertaive_details}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.cooperativeBankDetails}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 
@@ -542,7 +663,7 @@ body {
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
 								value="#{formMgmtBean.form.tnFishAssociationDetails}"
-								styleClass="form-control" />
+								 />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -567,7 +688,7 @@ body {
 						</h:panelGroup></label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.workType}"
-							styleClass="form-control" />
+							 />
 					</div>
 				</div>
 				<h:panelGroup
@@ -578,7 +699,7 @@ body {
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
 								value="#{formMgmtBean.form.isPrevYearbenefitter?label.yes:label.no}"
-								styleClass="form-control" />
+								 />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -590,7 +711,7 @@ body {
 									value="#{label.if_yes_from_which_year} " /></label>
 							<div class="col-lg-8 col-md-8 col-sm-8">
 								<h:outputText value="#{formMgmtBean.form.benefittedYear}"
-									styleClass="form-control" />
+									 />
 							</div>
 						</div>
 					</h:panelGroup>
@@ -604,7 +725,7 @@ body {
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
 								value="#{formMgmtBean.form.isBenefitter?label.yes:label.no}"
-								styleClass="form-control" />
+								 />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -617,7 +738,7 @@ body {
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
 								value="#{formMgmtBean.form.isGettingReliefFund?label.yes:label.no}"
-								styleClass="form-control" />
+								 />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -630,7 +751,7 @@ body {
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:outputText
 								value="#{formMgmtBean.form.isFullTimeFisherman?label.yes:label.no}"
-								styleClass="form-control" />
+								 />
 						</div>
 					</div>
 				</h:panelGroup>
@@ -677,29 +798,84 @@ body {
 
 					<h:panelGroup
 						rendered="#{formMgmtBean.adminPage eq 'adminView' and formMgmtBean.form.status ne 'accepted'}">
-						<br />
-						<h:outputLabel value="comments : " />
-						<h:inputTextarea id="commnetsId"
-							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
-							requiredMessage="Comments required"
-							value="#{formMgmtBean.reviewComments}" />
-						<h:message for="commnetsId" />
-						<br />
-						<h:commandButton id="acceptBtnId"
-							action="#{formMgmtBean.reviewForm('accepted')}" value="Accept">
-							<f:ajax execute="hisPanId" render="@form" />
-						</h:commandButton>
-						<br />
-						<h:commandButton id="rejectBtnId"
-							action="#{formMgmtBean.reviewForm('rejected')}" value="Reject">
-							<f:ajax execute="hisPanId" render="@form" />
-						</h:commandButton>
+
+						<div class="form-group col-sm-12 ">
+							<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+									value="comments" /> </label>
+							<div class="col-lg-8 col-md-8 col-sm-8">
+								<h:inputTextarea id="commnetsId"
+									required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
+									requiredMessage="Comments required"
+									value="#{formMgmtBean.reviewComments}" class="form-control"
+									rows="5" />
+								<h:message for="commnetsId" />
+							</div>
+						</div>
+						<div style="margin-top: 13px;" class="form-group col-sm-12">
+							<div class="col-lg-4 col-md-4 col-sm-4 "></div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+								<h:commandButton id="rejectBtnId" style="float: right;"
+									styleClass="btn btn-primary"
+									action="#{formMgmtBean.reviewForm('rejected')}" value="Reject">
+									<f:ajax execute="hisPanId" render="@form" />
+								</h:commandButton>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+								<h:commandButton id="acceptBtnId" styleClass="btn btn-primary"
+									action="#{formMgmtBean.reviewForm('accepted')}" value="Accept">
+									<f:ajax execute="hisPanId" render="@form" />
+								</h:commandButton>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2"></div>
+						</div>
+					</h:panelGroup>
+					<div style="margin-top: 13px;" class="form-group col-sm-12">
+						<div class="col-lg-4 col-md-4 col-sm-4 "></div>
+						<div class="col-lg-4 col-md-4 col-sm-4 "
+							style="text-align: center;">
+							<h:outputLink value="admin.xhtml" styleClass="btn btn-primary"
+								rendered="#{formMgmtBean.adminPage eq 'adminView'}">Back to admin</h:outputLink>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 "></div>
+					</div>
+					<h:panelGroup id="formReviewHisPanId"
+						rendered="#{not empty formMgmtBean.formReviewHistory}">
+						<h:dataTable id="formHisTblId" styleClass="display boxshadow"
+							value="#{formMgmtBean.formReviewHistory}" cellspacing="0"
+							width="100%" var="his" binding="#{formHisBnd}">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="S.No." />
+								</f:facet>
+								<h:outputText value="#{formHisBnd.rowIndex + 1}"
+									style="float:right" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Comments" />
+								</f:facet>
+								<div>
+									<h:outputText value="#{his.comments}" />
+								</div>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="status" />
+								</f:facet>
+								<div>
+									<h:outputText value="#{his.status}" />
+								</div>
+							</h:column>
+						</h:dataTable>
+						<script type="text/javascript">
+							$(document).ready(function() {
+								$('#formId\\:formHisTblId').DataTable();
+							});
+						</script>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
-
-
-
 		</h:form>
 	</div>
 	</section>

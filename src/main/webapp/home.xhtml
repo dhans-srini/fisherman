@@ -9,7 +9,9 @@
 	<title>Fisherman</title>
 </h:head>
 <h:body>
-	<h2>Tamilnadu Fisherman</h2>
+	<h2>
+		<h:outputText value="#{label.title}" />
+	</h2>
 	<h:form>
 		<h:outputLink value="pages/newForm1.xhtml?pageFlag=new">new form</h:outputLink>
 		<br />

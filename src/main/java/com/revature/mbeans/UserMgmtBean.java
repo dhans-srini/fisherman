@@ -88,7 +88,7 @@ public class UserMgmtBean {
 				User updatedBy = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 						.get("user");
 				adminService.updateUser(user, updatedBy);
-				Utils.addInfoMessage("Form updated successfully");
+				Utils.addInfoMessage("User updated successfully");
 				redirectToUsers();
 			}
 		} catch (Exception e) {
@@ -97,6 +97,7 @@ public class UserMgmtBean {
 	}
 
 	private void redirectToUsers() throws IOException {
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("users.xhtml");
 	}
 

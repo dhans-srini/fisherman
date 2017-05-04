@@ -51,7 +51,7 @@ public class AdminService {
 	private final String userSelectQuery = "select id,name,user_name,password,is_admin,is_active from users u where u.user_name=?";
 	private final String userByIdSelectQuery = "select id,name,user_name,password,is_admin,is_active from users u where u.id=?";
 	private final String userUpdQuery = "update users u set u.last_login_time=? where u.user_name=?";
-	private final String allFormQuery = "select id,code,name, fathers_name, is_married,section,created_on,status "
+	private final String allFormQuery = "select id,code,name,biometric_id, fathers_name, is_married,section,created_on,status "
 			+ "from form f order by f.created_on";
 	private final String allUserQuery = "select id,name,user_name,is_admin,is_active from users u where u.id!=?";
 
@@ -148,6 +148,7 @@ public class AdminService {
 				form.setId(rs.getLong("id"));
 				form.setFormCode(rs.getString("code"));
 				form.setName(rs.getString("name"));
+				form.setBiometricId(rs.getString("biometric_id"));
 				form.setFathersName(rs.getString("fathers_name"));
 				form.setMarried(rs.getBoolean("is_married"));
 				form.setSection(rs.getString("section"));

@@ -4,250 +4,277 @@ import java.sql.Timestamp;
 
 public class Form {
 
-  private Long id;
-  private String formCode;
-  private String type;
-  private String name;
-  private String fathersName;
-  private String age;
-  private String incomeDet;
-  private Boolean married;
-  private String section;
-  private Timestamp createdOn;
-  private String address;
-  private String biometricId;
-  private String biometricAppFormDetails;
-  private String rationCardId;
-  private String voterId;
-  private String adhaarNo;
-  private String nationalBankDetails;
-  private String groupAccDetails;
-  private String cooperativeBankDetails;
-  private String tnFishAssociationDetails;
-  private String workType;
-  private Boolean isPrevYearbenefitter;
-  private String benefittedYear;
-  private Boolean isBenefitter;
-  private Boolean isGettingReliefFund;
-  private Boolean isFullTimeFisherman;
-  private String status;
+	private Long id;
+	private String formCode;
+	private String type;
+	private String name;
+	private String fathersName;
+	private String age;
+	private String incomeDet;
+	private Boolean married;
+	private String section;
+	private Timestamp createdOn;
+	private String address;
+	private String biometricId;
+	private String biometricAppFormDetails;
+	private String rationCardId;
+	private String voterId;
+	private String adhaarNo;
+	private String nationalBankDetails;
+	private String groupAccDetails;
+	private String cooperativeBankDetails;
+	private String tnFishAssociationDetails;
+	private String workType;
+	private Boolean isPrevYearbenefitter;
+	private String benefittedYear;
+	private Boolean isBenefitter;
+	private Boolean isGettingReliefFund;
+	private Boolean isFullTimeFisherman;
 
-  public Long getId() {
-    return id;
-  }
+	private String village;
+	private String taluk;
+	private String district;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	private String status;
 
-  public String getFormCode() {
-    return formCode;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setFormCode(String formCode) {
-    this.formCode = formCode;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public String getType() {
-    return type;
-  }
+	public String getFormCode() {
+		return formCode;
+	}
 
-  public void setType(String type) {
-    this.type = type;
-  }
+	public void setFormCode(String formCode) {
+		this.formCode = formCode;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getType() {
+		return type;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-  public String getFathersName() {
-    return fathersName;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setFathersName(String fathersName) {
-    this.fathersName = fathersName;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getAge() {
-    return age;
-  }
+	public String getFathersName() {
+		return fathersName;
+	}
 
-  public void setAge(String age) {
-    this.age = age;
-  }
+	public void setFathersName(String fathersName) {
+		this.fathersName = fathersName;
+	}
 
-  public String getIncomeDet() {
-    return incomeDet;
-  }
+	public String getAge() {
+		return age;
+	}
 
-  public void setIncomeDet(String incomeDet) {
-    this.incomeDet = incomeDet;
-  }
+	public void setAge(String age) {
+		this.age = age;
+	}
 
-  public Boolean getMarried() {
-    return married;
-  }
+	public String getIncomeDet() {
+		return incomeDet;
+	}
 
-  public void setMarried(Boolean married) {
-    this.married = married;
-  }
+	public void setIncomeDet(String incomeDet) {
+		this.incomeDet = incomeDet;
+	}
 
-  public String getSection() {
-    return section;
-  }
+	public Boolean getMarried() {
+		return married;
+	}
 
-  public void setSection(String section) {
-    this.section = section;
-  }
+	public void setMarried(Boolean married) {
+		this.married = married;
+	}
 
-  public Timestamp getCreatedOn() {
-    return createdOn;
-  }
+	public String getSection() {
+		return section;
+	}
 
-  public void setCreatedOn(Timestamp createdOn) {
-    this.createdOn = createdOn;
-  }
+	public void setSection(String section) {
+		this.section = section;
+	}
 
-  public String getStatus() {
-    return status;
-  }
+	public Timestamp getCreatedOn() {
+		return createdOn;
+	}
 
-  public void setStatus(String status) {
-    this.status = status;
-  }
+	public void setCreatedOn(Timestamp createdOn) {
+		this.createdOn = createdOn;
+	}
 
-  public String getAddress() {
-    return address;
-  }
+	public String getStatus() {
+		return status;
+	}
 
-  public void setAddress(String address) {
-    this.address = address;
-  }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-  public String getBiometricId() {
-    return biometricId;
-  }
+	public String getAddress() {
+		return address;
+	}
 
-  public void setBiometricId(String biometricId) {
-    this.biometricId = biometricId;
-  }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-  public String getBiometricAppFormDetails() {
-    return biometricAppFormDetails;
-  }
+	public String getBiometricId() {
+		return biometricId;
+	}
 
-  public void setBiometricAppFormDetails(String biometricAppFormDetails) {
-    this.biometricAppFormDetails = biometricAppFormDetails;
-  }
+	public void setBiometricId(String biometricId) {
+		this.biometricId = biometricId;
+	}
 
-  public String getRationCardId() {
-    return rationCardId;
-  }
+	public String getBiometricAppFormDetails() {
+		return biometricAppFormDetails;
+	}
 
-  public void setRationCardId(String rationCardId) {
-    this.rationCardId = rationCardId;
-  }
+	public void setBiometricAppFormDetails(String biometricAppFormDetails) {
+		this.biometricAppFormDetails = biometricAppFormDetails;
+	}
 
-  public String getVoterId() {
-    return voterId;
-  }
+	public String getRationCardId() {
+		return rationCardId;
+	}
 
-  public void setVoterId(String voterId) {
-    this.voterId = voterId;
-  }
+	public void setRationCardId(String rationCardId) {
+		this.rationCardId = rationCardId;
+	}
 
-  public String getAdhaarNo() {
-    return adhaarNo;
-  }
+	public String getVoterId() {
+		return voterId;
+	}
 
-  public void setAdhaarNo(String adhaarNo) {
-    this.adhaarNo = adhaarNo;
-  }
+	public void setVoterId(String voterId) {
+		this.voterId = voterId;
+	}
 
-  public String getNationalBankDetails() {
-    return nationalBankDetails;
-  }
+	public String getAdhaarNo() {
+		return adhaarNo;
+	}
 
-  public void setNationalBankDetails(String nationalBankDetails) {
-    this.nationalBankDetails = nationalBankDetails;
-  }
+	public void setAdhaarNo(String adhaarNo) {
+		this.adhaarNo = adhaarNo;
+	}
 
-  public String getGroupAccDetails() {
-    return groupAccDetails;
-  }
+	public String getNationalBankDetails() {
+		return nationalBankDetails;
+	}
 
-  public void setGroupAccDetails(String groupAccDetails) {
-    this.groupAccDetails = groupAccDetails;
-  }
+	public void setNationalBankDetails(String nationalBankDetails) {
+		this.nationalBankDetails = nationalBankDetails;
+	}
 
-  public String getCooperativeBankDetails() {
-    return cooperativeBankDetails;
-  }
+	public String getGroupAccDetails() {
+		return groupAccDetails;
+	}
 
-  public void setCooperativeBankDetails(String cooperativeBankDetails) {
-    this.cooperativeBankDetails = cooperativeBankDetails;
-  }
+	public void setGroupAccDetails(String groupAccDetails) {
+		this.groupAccDetails = groupAccDetails;
+	}
 
-  public String getTnFishAssociationDetails() {
-    return tnFishAssociationDetails;
-  }
+	public String getCooperativeBankDetails() {
+		return cooperativeBankDetails;
+	}
 
-  public void setTnFishAssociationDetails(String tnFishAssociationDetails) {
-    this.tnFishAssociationDetails = tnFishAssociationDetails;
-  }
+	public void setCooperativeBankDetails(String cooperativeBankDetails) {
+		this.cooperativeBankDetails = cooperativeBankDetails;
+	}
 
-  public String getWorkType() {
-    return workType;
-  }
+	public String getTnFishAssociationDetails() {
+		return tnFishAssociationDetails;
+	}
 
-  public void setWorkType(String workType) {
-    this.workType = workType;
-  }
+	public void setTnFishAssociationDetails(String tnFishAssociationDetails) {
+		this.tnFishAssociationDetails = tnFishAssociationDetails;
+	}
 
-  public Boolean getIsPrevYearbenefitter() {
-    return isPrevYearbenefitter;
-  }
+	public String getWorkType() {
+		return workType;
+	}
 
-  public void setIsPrevYearbenefitter(Boolean isPrevYearbenefitter) {
-    this.isPrevYearbenefitter = isPrevYearbenefitter;
-  }
+	public void setWorkType(String workType) {
+		this.workType = workType;
+	}
 
-  public String getBenefittedYear() {
-    return benefittedYear;
-  }
+	public Boolean getIsPrevYearbenefitter() {
+		return isPrevYearbenefitter;
+	}
 
-  public void setBenefittedYear(String benefittedYear) {
-    this.benefittedYear = benefittedYear;
-  }
+	public void setIsPrevYearbenefitter(Boolean isPrevYearbenefitter) {
+		this.isPrevYearbenefitter = isPrevYearbenefitter;
+	}
 
-  public Boolean getIsBenefitter() {
-    return isBenefitter;
-  }
+	public String getBenefittedYear() {
+		return benefittedYear;
+	}
 
-  public void setIsBenefitter(Boolean isBenefitter) {
-    this.isBenefitter = isBenefitter;
-  }
+	public void setBenefittedYear(String benefittedYear) {
+		this.benefittedYear = benefittedYear;
+	}
 
-  public Boolean getIsGettingReliefFund() {
-    return isGettingReliefFund;
-  }
+	public Boolean getIsBenefitter() {
+		return isBenefitter;
+	}
 
-  public void setIsGettingReliefFund(Boolean isGettingReliefFund) {
-    this.isGettingReliefFund = isGettingReliefFund;
-  }
+	public void setIsBenefitter(Boolean isBenefitter) {
+		this.isBenefitter = isBenefitter;
+	}
 
-  public Boolean getIsFullTimeFisherman() {
-    return isFullTimeFisherman;
-  }
+	public Boolean getIsGettingReliefFund() {
+		return isGettingReliefFund;
+	}
 
-  public void setIsFullTimeFisherman(Boolean isFullTimeFisherman) {
-    this.isFullTimeFisherman = isFullTimeFisherman;
-  }
+	public void setIsGettingReliefFund(Boolean isGettingReliefFund) {
+		this.isGettingReliefFund = isGettingReliefFund;
+	}
 
+	public Boolean getIsFullTimeFisherman() {
+		return isFullTimeFisherman;
+	}
 
+	public void setIsFullTimeFisherman(Boolean isFullTimeFisherman) {
+		this.isFullTimeFisherman = isFullTimeFisherman;
+	}
+
+	public String getVillage() {
+		return village;
+	}
+
+	public void setVillage(String village) {
+		this.village = village;
+	}
+
+	public String getTaluk() {
+		return taluk;
+	}
+
+	public void setTaluk(String taluk) {
+		this.taluk = taluk;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
 
 }

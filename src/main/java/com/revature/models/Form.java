@@ -31,9 +31,14 @@ public class Form {
 	private Boolean isGettingReliefFund;
 	private Boolean isFullTimeFisherman;
 
-	private String village;
+	private Long village;
+	private String villageName;
 	private String taluk;
 	private String district;
+
+	private Long socity;
+	private String socityName;
+	private String socityCode;
 
 	private String status;
 
@@ -253,14 +258,6 @@ public class Form {
 		this.isFullTimeFisherman = isFullTimeFisherman;
 	}
 
-	public String getVillage() {
-		return village;
-	}
-
-	public void setVillage(String village) {
-		this.village = village;
-	}
-
 	public String getTaluk() {
 		return taluk;
 	}
@@ -275,6 +272,46 @@ public class Form {
 
 	public void setDistrict(String district) {
 		this.district = district;
+	}
+
+	public String getSocityCode() {
+		return socityCode;
+	}
+
+	public void setSocityCode(String socityCode) {
+		this.socityCode = socityCode;
+	}
+
+	public Long getVillage() {
+		return village;
+	}
+
+	public void setVillage(Long village) {
+		this.village = village;
+	}
+
+	public String getVillageName() {
+		return villageName;
+	}
+
+	public void setVillageName(String villageName) {
+		this.villageName = villageName;
+	}
+
+	public Long getSocity() {
+		return socity;
+	}
+
+	public void setSocity(Long socity) {
+		this.socity = socity;
+	}
+
+	public String getSocityName() {
+		return socityName;
+	}
+
+	public void setSocityName(String socityName) {
+		this.socityName = socityName;
 	}
 
 }

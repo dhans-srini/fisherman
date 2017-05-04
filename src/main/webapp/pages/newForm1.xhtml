@@ -173,11 +173,29 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.village}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText id="villageId" value="#{formMgmtBean.form.village}"
-							styleClass="form-control"
-							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
-							requiredMessage="Village is required" />
+						<h:selectOneMenu id="villageId"
+							value="#{formMgmtBean.form.village}">
+							<f:ajax execute="@this" render="socityOptId"
+								listener="#{formMgmtBean.updateVillage()}" />
+							<f:selectItem itemValue="#{null}" itemLabel="Select" />
+							<f:selectItems value="#{formMgmtBean.villages}" var="vil"
+								itemLabel="#{vil.name}" itemValue="#{vil.id}" />
+						</h:selectOneMenu>
 						<h:message for="villageId" style="color: red;" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.socity}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:selectOneMenu id="socityOptId"
+							value="#{formMgmtBean.form.socity}">
+							<f:selectItem itemValue="#{null}" itemLabel="Select" />
+							<f:selectItems value="#{formMgmtBean.socitiesBasedOnVillages}"
+								var="soc" itemLabel="#{soc.name}" itemValue="#{soc.id}" />
+						</h:selectOneMenu>
+						<h:message for="socityOptId" style="color: red;" />
 					</div>
 				</div>
 
@@ -362,16 +380,17 @@ select {
 
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="#{label.co_opertaive_details}" /> </label>
+							value="#{label.co_opertaive_details}"
+							rendered="#{formMgmtBean.form.type ne 'nfsrs_woman'}" /> <h:outputText
+							value="#{label.fisher_woman_co_opertaive_details}"
+							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText value="#{formMgmtBean.form.cooperativeBankDetails}"
 							styleClass="form-control" />
 					</div>
 				</div>
-
-
 				<h:panelGroup
-					rendered="#{formMgmtBean.form.type ne 'fishing_ban_relief'}">
+					rendered="#{formMgmtBean.form.type ne 'fishing_ban_relief' and formMgmtBean.form.type ne 'nfsrs_woman'}">
 					<div class="form-group col-sm-12 ">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 								value="#{label.tn_fish_association_no}" /> </label>
@@ -424,7 +443,8 @@ select {
 				</h:panelGroup>
 
 				<h:panelGroup id="perfbyselection">
-					<h:panelGroup rendered="#{formMgmtBean.form.isPrevYearbenefitter}">
+					<h:panelGroup
+						rendered="#{formMgmtBean.form.isPrevYearbenefitter and formMgmtBean.form.type ne 'fishing_ban_relief'}">
 						<div class="form-group col-sm-12 ">
 							<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 									value="#{label.if_yes_from_which_year} " /></label>
@@ -527,7 +547,15 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.village}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:outputText value="#{formMgmtBean.form.village}" />
+						<h:outputText value="#{formMgmtBean.form.villageName}" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.socity}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:outputText value="#{formMgmtBean.form.socityName}" />
 					</div>
 				</div>
 
@@ -548,7 +576,10 @@ select {
 				</div>
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="#{label.full_name_with_alias_name}" /> </label>
+							value="#{label.full_name_with_alias_name}"
+							rendered="#{formMgmtBean.form.type ne 'nfsrs_woman'}" /> <h:outputText
+							value="#{label.fisher_woman_name}"
+							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /></label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.name}" />
 					</div>
@@ -556,7 +587,10 @@ select {
 
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="#{label.father_name}" /> </label>
+							value="#{label.father_name}"
+							rendered="#{formMgmtBean.form.type ne 'nfsrs_woman'}" /> <h:outputText
+							value="#{label.fisher_woman_father_husbend_name}"
+							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /></label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.fathersName}" />
 					</div>
@@ -682,7 +716,10 @@ select {
 
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="#{label.co_opertaive_details}" /> </label>
+							value="#{label.co_opertaive_details}"
+							rendered="#{formMgmtBean.form.type ne 'nfsrs_woman'}" /> <h:outputText
+							value="#{label.fisher_woman_co_opertaive_details}"
+							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:outputText value="#{formMgmtBean.form.cooperativeBankDetails}" />
 					</div>

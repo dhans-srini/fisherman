@@ -54,6 +54,18 @@ select {
 		.15s;
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
+.msg-style {
+	list-style: none;
+}
+
+.success-msg {
+	color: green;
+}
+
+.error-msg {
+	color: red;
+}
 </style>
 </h:head>
 
@@ -66,7 +78,8 @@ select {
 	</div>
 	<div class="row">
 		<h:form id="formId">
-			<h:messages globalOnly="true" />
+			<h:messages globalOnly="true" styleClass="msg-style"
+				errorClass="error-msg" infoClass="success-msg" />
 			<div style="margin-top: 13px;" class="form-group col-sm-12">
 				<div class="col-lg-12 col-md-12 col-sm-12 "
 					style="text-align: center;">
@@ -74,7 +87,7 @@ select {
 					<h:commandButton value="Logout"
 						rendered="#{sessionScope.user ne null}"
 						styleClass="btn btn-primary"
-						style="float: right;margin-right:20px;">
+						style="float: right;margin-left:20px;">
 						<f:ajax execute="@this" render="@this"
 							listener="#{adminMgmtBean.logout()}" />
 					</h:commandButton>
@@ -83,11 +96,10 @@ select {
 						style="float: right;" rendered="#{sessionScope.user.isAdmin}">Manage Users</h:outputLink>
 
 					<h:commandButton value="Download Report"
+						action="#{adminMgmtBean.download()}"
 						rendered="#{sessionScope.user ne null}"
 						styleClass="btn btn-primary"
 						style="float: right;margin-right:20px;">
-						<f:ajax execute="@this" render="@this"
-							listener="#{adminMgmtBean.download()}" />
 					</h:commandButton>
 				</div>
 			</div>
@@ -100,7 +112,7 @@ select {
 						<h:inputText id="userNameId" value="#{adminMgmtBean.userName}"
 							styleClass="form-control" required="true"
 							requiredMessage="User Name is required" />
-						<h:message for="userNameId" />
+						<h:message for="userNameId" styleClass="error-msg" />
 					</div>
 				</div>
 
@@ -111,14 +123,15 @@ select {
 						<h:inputSecret id="pwdId" styleClass="form-control"
 							value="#{adminMgmtBean.password}" required="true"
 							requiredMessage="Password is required" />
-						<h:message for="pwdId" />
+						<h:message for="pwdId" styleClass="error-msg" />
 					</div>
 				</div>
 
 				<div style="margin-top: 13px;" class="form-group col-sm-12">
 					<div class="col-lg-4 col-md-4 col-sm-4 "></div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-						<button style="float: right;" class="btn btn-primary">Back</button>
+						<h:outputLink style="float: right;" styleClass="btn btn-primary"
+							value="#{request.contextPath}/home.xhtml">Back</h:outputLink>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
 						<h:commandButton action="#{adminMgmtBean.validateUser()}"
@@ -148,6 +161,21 @@ select {
 						</f:facet>
 						<div>
 							<h:outputText value="#{form.formCode}" />
+						</div>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Type" />
+						</f:facet>
+						<div>
+							<h:outputText value="#{label.spl_allowance}"
+								rendered="#{form.type eq 'spl_allowance'}" />
+							<h:outputText value="#{label.fishing_ban_relief}"
+								rendered="#{form.type eq 'fishing_ban_relief'}" />
+							<h:outputText value="#{label.nfsrs}"
+								rendered="#{form.type eq 'nfsrs'}" />
+
 						</div>
 					</h:column>
 					<h:column>

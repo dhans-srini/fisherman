@@ -56,6 +56,10 @@ select {
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
+.msg-style {
+	list-style: none;
+}
+
 .success-msg {
 	color: green;
 }
@@ -75,8 +79,8 @@ select {
 	</div>
 	<div class="row">
 		<h:form id="formId">
-			<h:messages globalOnly="true" errorClass="error-msg"
-				infoClass="success-msg" />
+			<h:messages globalOnly="true" styleClass="msg-style"
+				errorClass="error-msg" infoClass="success-msg" />
 			<h:panelGroup id="userViewPanId"
 				rendered="#{userMgmtBean.page eq null}">
 				<div style="margin-top: 13px;" class="form-group col-sm-12">

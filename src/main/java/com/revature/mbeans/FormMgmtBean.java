@@ -144,12 +144,11 @@ public class FormMgmtBean {
 	public void init() {
 		try {
 			pageFlag = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("pageFlag");
-
+			loadVillages();
+			loadSocity();
 			if ("new".equals(pageFlag)) {
 				form = new Form();
 				form.setType("spl_allowance");
-				loadVillages();
-				loadSocity();
 			} else if ("revieviewExistingForm".equals(pageFlag)) {
 				this.formCode = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
 						.get("formCode");
@@ -234,6 +233,7 @@ public class FormMgmtBean {
 				fc.responseComplete();
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			Utils.addErrorMessage(e.getMessage());
 		}
 	}
@@ -257,7 +257,9 @@ public class FormMgmtBean {
 		map.put("fathersName", frm.getFathersName());
 		map.put("age", frm.getAge());
 		map.put("incomeDet", frm.getIncomeDet());
-		map.put("married", frm.getMarried() ? yes : no);
+		if (frm.getMarried() != null) {
+			map.put("married", frm.getMarried() ? yes : no);
+		}
 
 		if (frm.getSection() != null) {
 			String section = getValueFromPageLabels(frm.getSection());

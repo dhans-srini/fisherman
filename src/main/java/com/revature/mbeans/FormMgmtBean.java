@@ -195,12 +195,6 @@ public class FormMgmtBean {
 
 	public void save() {
 		try {
-			Socity socity = socities.stream().filter(s -> s.getId().equals(form.getSocity())).findFirst().orElse(null);
-			if (socity != null) {
-				form.setSocityName(socity.getName());
-
-				form.setSocityCode(socity.getCode());
-			}
 			formService.saveForm(form);
 			pageFlag = "view";
 			pageScript = "formSave";
@@ -333,5 +327,21 @@ public class FormMgmtBean {
 			Utils.addErrorMessage(e.getMessage());
 		}
 
+	}
+
+	public void updatesocity() {
+		try {
+			if (this.form.getSocity() != null) {
+				Socity socity = socities.stream().filter(s -> s.getId().equals(form.getSocity())).findFirst()
+						.orElse(null);
+				if (socity != null) {
+					form.setSocityName(socity.getName());
+
+					form.setSocityCode(socity.getCode());
+				}
+			}
+		} catch (Exception e) {
+			Utils.addErrorMessage(e.getMessage());
+		}
 	}
 }

@@ -178,8 +178,7 @@ select {
 							value="#{formMgmtBean.form.district}" styleClass="form-control"
 							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
 							requiredMessage="District is required">
-							<f:selectItem itemValue="Chennai"
-								itemLabel="Chennai" />
+							<f:selectItem itemValue="Chennai" itemLabel="Chennai" />
 						</h:selectOneMenu>
 						<h:message for="districtId" style="color: red;" />
 					</div>
@@ -938,7 +937,12 @@ select {
 						</h:dataTable>
 						<script type="text/javascript">
 							$(document).ready(function() {
-								$('#formId\\:formHisTblId').DataTable();
+								$('#formId\\:formHisTblId').DataTable({
+									"bPaginate" : false,
+									"bFilter" : false,
+									"bInfo" : false,
+									"ordering" : false,
+								});
 							});
 						</script>
 					</h:panelGroup>

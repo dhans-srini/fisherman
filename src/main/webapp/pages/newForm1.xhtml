@@ -169,6 +169,35 @@ select {
 					</div>
 				</div>
 
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.District}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:selectOneMenu id="districtId"
+							value="#{formMgmtBean.form.district}" styleClass="form-control"
+							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
+							requiredMessage="District is required">
+							<f:selectItem itemValue="Chennai"
+								itemLabel="Chennai" />
+						</h:selectOneMenu>
+						<h:message for="districtId" style="color: red;" />
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12 ">
+					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+							value="#{label.circle}" /> </label>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h:inputText id="talukId" value="#{formMgmtBean.form.taluk}"
+							styleClass="form-control"
+							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
+							requiredMessage="Taluk is required" />
+						<h:message for="talukId" style="color: red;" />
+					</div>
+				</div>
+
+
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.village}" /> </label>
@@ -201,29 +230,6 @@ select {
 					</div>
 				</div>
 
-				<div class="form-group col-sm-12 ">
-					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="#{label.circle}" /> </label>
-					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText id="talukId" value="#{formMgmtBean.form.taluk}"
-							styleClass="form-control"
-							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
-							requiredMessage="Taluk is required" />
-						<h:message for="talukId" style="color: red;" />
-					</div>
-				</div>
-
-				<div class="form-group col-sm-12 ">
-					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="#{label.District}" /> </label>
-					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText id="districtId" value="#{formMgmtBean.form.district}"
-							styleClass="form-control"
-							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
-							requiredMessage="District is required" />
-						<h:message for="districtId" style="color: red;" />
-					</div>
-				</div>
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.full_name_with_alias_name}"

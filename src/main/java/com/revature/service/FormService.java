@@ -72,7 +72,7 @@ public class FormService {
 			if (form.getId() == null) {
 				PreparedStatement ps = con.prepareStatement(insertTableSQL);
 				String formCode = "02/" + form.getSocityCode() + "/";
-				formCode += UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6);
+				formCode += UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6).toUpperCase();
 
 				form.setFormCode(formCode);
 				ps.setObject(1, form.getName());

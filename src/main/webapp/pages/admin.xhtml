@@ -234,11 +234,15 @@ select {
 					</h:column>
 				</h:dataTable>
 				<script type="text/javascript">
-					$(document).ready(function() {
-						$('#formId\\:formsTblId').DataTable(
-								 "lengthMenu": [[100, 200, 500], [100, 200, 500]]
-						);
-					});
+					$(document).ready(
+							function() {
+								$('#formId\\:formsTblId').DataTable(
+										{
+											"lengthMenu" : [
+													[ 100, 200, 500 ],
+													[ 100, 200, 500  ] ]
+										});
+							});
 				</script>
 			</h:panelGroup>
 		</h:form>

@@ -51,6 +51,10 @@ body {
 	font-size: 11px;
 }
 
+.mrg-right {
+	margin-right: 15px;
+}
+
 select {
 	font-family: inherit;
 	font-size: inherit;
@@ -117,6 +121,7 @@ select {
 						<h:inputText id="formCodeId" value="#{formMgmtBean.formCode}"
 							required="true" requiredMessage="Form code is required"
 							styleClass="form-control" />
+						<h:message for="formCodeId" styleClass="error-msg " />
 					</div>
 				</div>
 				<div style="margin-top: 13px;" class="form-group col-sm-12">
@@ -510,17 +515,27 @@ select {
 					</div>
 				</h:panelGroup>
 
-				<div style="margin-top: 13px;" class="form-group col-sm-12">
-					<div class="col-lg-4 col-md-4 col-sm-4 "></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"></div>
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-						<h:commandButton id="preview-btn-id"
-							action="#{formMgmtBean.setPageFlag('pre-view')}"
-							styleClass="btn btn-primary" value="Preview">
-							<f:ajax execute="newPanId" render="@form" />
-						</h:commandButton>
-					</div>
-					<div class="col-lg-2 col-md-2 col-sm-2"></div>
+				<div style="margin-top: 13px; text-align: center;"
+					class="form-group col-sm-12">
+
+
+					<h:outputLink styleClass="btn btn-primary mrg-right"
+						rendered="#{formMgmtBean.adminPage ne 'search'}"
+						value="#{request.contextPath}/home.xhtml">Cancel</h:outputLink>
+
+					<h:commandButton id="preview-btn-id-from-page-search"
+						rendered="#{formMgmtBean.adminPage eq 'search'}"
+						action="#{formMgmtBean.setPageFlag('view')}"
+						styleClass="btn btn-primary mrg-right" value="Cancel">
+						<f:ajax execute="newPanId" render="@form" />
+					</h:commandButton>
+
+					<h:commandButton id="preview-btn-id"
+						action="#{formMgmtBean.setPageFlag('pre-view')}"
+						styleClass="btn btn-primary" value="Preview">
+						<f:ajax execute="newPanId" render="@form" />
+					</h:commandButton>
+
 				</div>
 			</h:panelGroup>
 
@@ -830,47 +845,62 @@ select {
 				</h:panelGroup>
 
 				<h:panelGroup rendered="#{formMgmtBean.pageFlag eq 'pre-view'}">
-					<div style="margin-top: 13px;" class="form-group col-sm-12">
-						<div class="col-lg-4 col-md-4 col-sm-4 "></div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"
-							style="text-align: center;">
-							<h:commandButton style="float: right;"
-								action="#{formMgmtBean.setPageFlag('new')}" value="Edit"
-								styleClass="btn btn-primary">
-								<f:ajax execute="newPanId" render="@form" />
-							</h:commandButton>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-							<h:commandButton action="#{formMgmtBean.save}" value="Save"
-								styleClass="btn btn-primary">
-								<f:ajax execute="newPanId" render="@form" />
-							</h:commandButton>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2"></div>
+					<div style="margin-top: 13px; text-align: center;"
+						class="form-group col-sm-12">
+
+						<h:outputLink styleClass="btn btn-primary mrg-right"
+							rendered="#{formMgmtBean.adminPage ne 'search'}"
+							value="#{request.contextPath}/home.xhtml">Cancel</h:outputLink>
+
+						<h:commandButton id="preview-btn-id-from-page-search-preview"
+							rendered="#{formMgmtBean.adminPage eq 'search'}"
+							action="#{formMgmtBean.setPageFlag('view')}"
+							styleClass="btn btn-primary mrg-right" value="Cancel">
+							<f:ajax execute="newPanId" render="@form" />
+						</h:commandButton>
+
+						<h:commandButton action="#{formMgmtBean.setPageFlag('new')}"
+							value="Edit" styleClass="btn btn-primary mrg-right">
+							<f:ajax execute="newPanId" render="@form" />
+						</h:commandButton>
+
+						<h:commandButton action="#{formMgmtBean.save}" value="Save"
+							styleClass="btn btn-primary mrg-right">
+							<f:ajax execute="newPanId" render="@form" />
+						</h:commandButton>
+
 					</div>
 				</h:panelGroup>
 
 				<h:panelGroup id="hisPanId"
 					rendered="#{formMgmtBean.pageFlag eq 'view'}">
 
-					<div style="margin-top: 13px;" class="form-group col-sm-12">
-						<div class="col-lg-4 col-md-4 col-sm-4 "></div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-							<h:commandButton id="downloadBtnId" style="float: right;"
-								styleClass="btn btn-primary" action="#{formMgmtBean.download()}"
-								value="Click here to download" />
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<h:commandButton action="#{formMgmtBean.setPageFlag('new')}"
-								rendered="#{sessionScope.user eq null and formMgmtBean.form.status ne 'accepted'}"
-								styleClass="btn btn-primary" value="Edit">
-								<f:ajax execute="newPanId" render="@form" />
-							</h:commandButton>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<h:outputLink value="admin.xhtml" styleClass="btn btn-primary"
-								rendered="#{formMgmtBean.adminPage eq 'adminView'}">Back</h:outputLink>
-						</div>
+					<div style="margin-top: 13px; text-align: center;"
+						class="form-group col-sm-12">
+
+						<h:outputLink styleClass="btn btn-primary mrg-right "
+							rendered="#{formMgmtBean.adminPage eq 'search'}"
+							value="newForm1.xhtml?pageFlag=viewExistingForm">Goto Search</h:outputLink>
+
+						<h:outputLink styleClass="btn btn-primary mrg-right "
+							rendered="#{formMgmtBean.adminPage eq null}"
+							value="#{request.contextPath}/home.xhtml">Goto Home</h:outputLink>
+
+						<h:outputLink value="admin.xhtml"
+							styleClass="btn btn-primary mrg-right "
+							rendered="#{formMgmtBean.adminPage eq 'adminView'}">Back</h:outputLink>
+
+						<h:commandButton id="downloadBtnId"
+							styleClass="btn btn-primary mrg-right "
+							action="#{formMgmtBean.download()}"
+							value="Click here to download" />
+
+						<h:commandButton action="#{formMgmtBean.setPageFlag('new')}"
+							rendered="#{sessionScope.user eq null and formMgmtBean.form.status ne 'accepted'}"
+							styleClass="btn btn-primary mrg-right " value="Edit">
+							<f:ajax execute="newPanId" render="@form" />
+						</h:commandButton>
+
 					</div>
 
 

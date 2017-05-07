@@ -35,7 +35,6 @@ import com.revature.utils.Utils;
 @ViewScoped
 public class FormMgmtBean {
 
-	private static final String FONT = "FreeSans.ttf";
 	private FormService formService = FormService.getInstance();
 	private Form form;
 	private String formCode;
@@ -155,6 +154,8 @@ public class FormMgmtBean {
 				adminPage = "adminView";
 				loadForm();
 
+			} else if ("viewExistingForm".equals(pageFlag)) {
+				adminPage = "search";
 			}
 		} catch (Exception e) {
 			Utils.addErrorMessage(e.getMessage());
@@ -239,7 +240,7 @@ public class FormMgmtBean {
 	}
 
 	public void createPdf(OutputStream output, Form frm) throws Exception {
-		String baseLocataion = "E:\\Revature Development\\Git workspace\\fisherman-govt\\";
+		String baseLocataion = Utils.getValueFromAppProperties("aspose_font_and_folder");
 		FontSettings.getDefaultInstance().setFontsFolder(baseLocataion + "fonts", true);
 		String yes = getValueFromPageLabels("yes");
 		String no = getValueFromPageLabels("no");

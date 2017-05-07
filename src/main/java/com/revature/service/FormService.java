@@ -1,10 +1,10 @@
 package com.revature.service;
 
+import static com.revature.utils.Utils.getConnection;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -218,13 +218,6 @@ public class FormService {
 			throw new BusinessException("Form get failed.", e);
 		}
 		return form;
-	}
-
-	private Connection getConnection() throws SQLException, ClassNotFoundException {
-		Class.forName("com.mysql.jdbc.Driver");
-		return DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/fisher_man?autoReconnect=true&zeroDateTimeBehavior=convertToNull", "root",
-				"root");
 	}
 
 	public List<FormReviewHistory> getFormReviewHistory(String formCode) throws BusinessException {

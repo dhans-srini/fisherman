@@ -1,6 +1,5 @@
 package com.revature.mbeans;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
@@ -17,7 +16,12 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -126,9 +130,18 @@ public class AdminMgmtBean {
 
 	private void createExcel(OutputStream out) {
 		try {
+
 			XSSFWorkbook workbook = new XSSFWorkbook();
 			XSSFSheet sheet = workbook.createSheet("Fisher man data");
-			// This data needs to be written (Object[])
+
+			XSSFCellStyle style = workbook.createCellStyle();
+			style.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.getIndex());
+			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+			XSSFFont font = (XSSFFont) workbook.createFont();
+			font.setBold(true);
+			style.setFont(font);
+			style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
 
 			Map<Integer, Object[]> data = new TreeMap<Integer, Object[]>();
 			data.put(1, new Object[] { "S.No", "Code", "Type", "Name", "Father's Name", "Biometric id", "status" });
@@ -151,12 +164,20 @@ public class AdminMgmtBean {
 						cell.setCellValue((String) obj);
 					else if (obj instanceof Integer)
 						cell.setCellValue((Integer) obj);
+
+					if (rownum == 1) {
+						cell.setCellStyle(style);
+					}
 				}
 			}
 			sheet.autoSizeColumn(1);
 			sheet.autoSizeColumn(2);
 			sheet.autoSizeColumn(3);
+			sheet.autoSizeColumn(4);
+			sheet.autoSizeColumn(5);
+			sheet.autoSizeColumn(6);
 			workbook.write(out);
+			workbook.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();

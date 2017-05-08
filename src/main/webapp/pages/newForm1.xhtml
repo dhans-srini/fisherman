@@ -180,7 +180,7 @@ select {
 							value="#{label.District}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:selectOneMenu id="districtId"
-							value="#{formMgmtBean.form.district}" styleClass="form-control"
+							value="#{formMgmtBean.form.district}"
 							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
 							requiredMessage="District is required">
 							<f:selectItem itemValue="Chennai" itemLabel="Chennai" />
@@ -197,6 +197,7 @@ select {
 							styleClass="form-control"
 							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
 							requiredMessage="#{label.circle} தேவையானது." />
+
 						<h:message for="talukId" style="color: red;" />
 					</div>
 				</div>
@@ -216,7 +217,9 @@ select {
 							<f:selectItems value="#{formMgmtBean.villages}" var="vil"
 								itemLabel="#{vil.name}" itemValue="#{vil.id}" />
 						</h:selectOneMenu>
-						<h:message for="villageId" style="color: red;" />
+						<div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
+							<h:message for="villageId" style="color: red;" />
+						</div>
 					</div>
 				</div>
 
@@ -234,7 +237,10 @@ select {
 							<f:selectItems value="#{formMgmtBean.socitiesBasedOnVillages}"
 								var="soc" itemLabel="#{soc.name}" itemValue="#{soc.id}" />
 						</h:selectOneMenu>
-						<h:message for="socityOptId" style="color: red;" />
+
+						<div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
+							<h:message for="socityOptId" style="color: red;" />
+						</div>
 					</div>
 				</div>
 

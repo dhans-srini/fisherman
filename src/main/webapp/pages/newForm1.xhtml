@@ -195,8 +195,8 @@ select {
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText id="talukId" value="#{formMgmtBean.form.taluk}"
 							styleClass="form-control"
-							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
-							requiredMessage="Taluk is required" />
+							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
+							requiredMessage="#{label.circle} தேவையானது." />
 						<h:message for="talukId" style="color: red;" />
 					</div>
 				</div>
@@ -207,6 +207,8 @@ select {
 							value="#{label.village}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:selectOneMenu id="villageId"
+							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
+							requiredMessage="#{label.village} தேவையானது."
 							value="#{formMgmtBean.form.village}">
 							<f:ajax execute="@this" render="socityOptId"
 								listener="#{formMgmtBean.updateVillage()}" />
@@ -223,6 +225,8 @@ select {
 							value="#{label.socity}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:selectOneMenu id="socityOptId"
+							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
+							requiredMessage="#{label.socity} தேவையானது."
 							value="#{formMgmtBean.form.socity}">
 							<f:ajax execute="@this" render="@this"
 								listener="#{formMgmtBean.updatesocity()}" />
@@ -242,9 +246,9 @@ select {
 							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText id="firstNameId" value="#{formMgmtBean.form.name}"
-							styleClass="form-control"
-							required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
-							requiredMessage="First Name is required" />
+							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
+							requiredMessage="#{formMgmtBean.form.type ne 'nfsrs_woman'?label.full_name_with_alias_name:label.fisher_woman_name} தேவையானது."
+							styleClass="form-control" />
 						<h:message for="firstNameId" style="color: red;" />
 					</div>
 				</div>
@@ -257,7 +261,11 @@ select {
 							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText value="#{formMgmtBean.form.fathersName}"
+							id="fathersNameId"
+							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
+							requiredMessage="#{formMgmtBean.form.type ne 'nfsrs_woman'?label.father_name:label.fisher_woman_father_husbend_name} தேவையானது."
 							styleClass="form-control" />
+						<h:message for="fathersNameId" style="color: red;" />
 					</div>
 				</div>
 

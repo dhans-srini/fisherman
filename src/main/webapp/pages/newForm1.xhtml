@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:j="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <h:head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title><h:outputText value="#{label.title}" /></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -96,7 +98,7 @@ select {
 		<hr />
 	</div>
 	<div class="row">
-		<h:form id="formId">
+		<h:form id="formId" enctype="multipart/form-data">
 			<div class="col-sm-12">
 				<h:messages globalOnly="true" styleClass="msg-style"
 					errorClass="error-msg" infoClass="success-msg" />
@@ -160,7 +162,7 @@ select {
 							<f:selectItem itemValue="nfsrs_woman"
 								itemLabel="#{label.nfsrs_woman}" />
 						</h:selectOneMenu>
-						<h:message for="formTypeId" />
+						<h:message for="formTypeId" styleClass="error-msg " />
 						<c:if test="#{formMgmtBean.form.id ne null}">
 							<h:outputText value="#{label.spl_allowance}"
 								rendered="#{formMgmtBean.form.type eq 'spl_allowance'}" />
@@ -528,11 +530,116 @@ select {
 						</div>
 					</div>
 				</h:panelGroup>
+				<h:panelGroup id="fileUploadPanId">
+					<div class="form-group col-sm-12 ">
+						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+								value="#{label.attachemt_type}" /></label>
+						<div class="col-lg-8 col-md-8 col-sm-8">
+							<h:selectOneMenu id="attTypeId" value="#{formMgmtBean.fileType}"
+								required="#{param['javax.faces.source'] eq 'formId:file-upload-btn'}"
+								requiredMessage="#{label.attachemt_type} தேவையானது.">
+								<f:selectItem itemValue="photo" itemLabel="#{label.photo_att}" />
+								<f:selectItem itemValue="rationCard"
+									itemLabel="#{label.ration_card_att}" />
+								<f:selectItem itemValue="voterId"
+									itemLabel="#{label.voter_id_att}" />
+								<f:selectItem itemValue="atharId"
+									itemLabel="#{label.auther_no_att}" />
+								<f:selectItem itemValue="bankPassbook"
+									itemLabel="#{label.bank_att}" />
+							</h:selectOneMenu>
+						</div>
+					</div>
+					<div class="form-group col-sm-12 ">
+						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
+								value="#{label.attachemt_file}" /></label>
+						<div class="col-lg-8 col-md-8 col-sm-8">
+							<h:inputFile value="#{formMgmtBean.file}"
+								required="#{param['javax.faces.source'] eq 'formId:file-upload-btn'}"
+								id="fileId" requiredMessage="#{label.attachemt_file} தேவையானது."
+								mimeType="#{formMgmtBean.fileType}"></h:inputFile>
+							<h:message for="fileId" styleClass="error-msg " />
+						</div>
+					</div>
+					<div class="form-group col-sm-12 " style="text-align: center;">
+						<h:commandLink id="file-upload-btn"
+							action="#{formMgmtBean.fileUpload()}"
+							styleClass="btn btn-primary mrg-right" value="Upload">
+							<f:ajax execute="fileUploadPanId" render="fileUploadPanId" />
+						</h:commandLink>
+					</div>
+					<h:panelGroup id="uploadedFilesPanId"
+						rendered="#{not empty formMgmtBean.formAttachemts}">
+						<h:dataTable id="uploadedFilesTblId"
+							styleClass="display boxshadow"
+							value="#{formMgmtBean.formAttachemts}" cellspacing="0"
+							width="100%" var="file" binding="#{uploadedFilesTblBnd}">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="S.No." />
+								</f:facet>
+								<h:outputText value="#{uploadedFilesTblBnd.rowIndex + 1}"
+									style="float:right" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="File Type" />
+								</f:facet>
+								<div>
+									<h:outputText value="#{label.photo_att}"
+										rendered="#{file.fileType eq 'photo'}" />
+									<h:outputText value="#{label.ration_card_att}"
+										rendered="#{file.fileType eq 'rationCard'}" />
+									<h:outputText value="#{label.voter_id_att}"
+										rendered="#{file.fileType eq 'voterId'}" />
+									<h:outputText value="#{label.auther_no_att}"
+										rendered="#{file.fileType eq 'atharId'}" />
+									<h:outputText value="#{label.bank_att}"
+										rendered="#{file.fileType eq 'bankPassbook'}" />
+								</div>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="File Name" />
+								</f:facet>
+								<div>
+									<h:commandLink id="dwnbtnId"
+										action="#{formMgmtBean.downloadUploadedFile(file)}"
+										immediate="true" value="#{file.fileName}">
+										<f:ajax execute="@this" render="@this" />
+									</h:commandLink>
+								</div>
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Action" />
+								</f:facet>
+								<div>
+									<h:commandLink
+										action="#{formMgmtBean.deleteUploadedFile(uploadedFilesTblBnd.rowIndex)}"
+										value="Delete">
+										<f:ajax execute="@this" render="formId:fileUploadPanId" />
+									</h:commandLink>
+								</div>
+							</h:column>
+						</h:dataTable>
+						<script type="text/javascript">
+							$(document).ready(function() {
+								$('#formId\\:uploadedFilesTblId').DataTable({
+									"bPaginate" : false,
+									"bFilter" : false,
+									"bInfo" : false,
+									"ordering" : false,
+								});
+							});
+						</script>
+					</h:panelGroup>
+				</h:panelGroup>
 
 				<div style="margin-top: 13px; text-align: center;"
 					class="form-group col-sm-12">
-
-
 					<h:outputLink styleClass="btn btn-primary mrg-right"
 						rendered="#{formMgmtBean.adminPage ne 'search'}"
 						value="#{request.contextPath}/home.xhtml">Cancel</h:outputLink>
@@ -556,6 +663,15 @@ select {
 
 			<h:panelGroup styleClass="fnt-size-11 "
 				rendered="#{formMgmtBean.pageFlag eq 'pre-view' or formMgmtBean.pageFlag eq 'view'}">
+				<div class="form-group col-sm-12 " style="margin-bottom: 50px;">
+					<div class="col-lg-7 col-md-7 col-sm-7" />
+					<div class="col-lg-5 col-md-5 col-sm-5">
+						<img
+							src="#{request.contextPath}/fileController?uniqueName=#{formMgmtBean.photoUniqueName}"
+							alt="PHOTO" height="200" width="150" />
+					</div>
+
+				</div>
 				<h:panelGroup rendered="#{formMgmtBean.form.formCode ne null}">
 					<div class="form-group col-sm-12 ">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
@@ -858,6 +974,62 @@ select {
 					</div>
 				</h:panelGroup>
 
+				<h:panelGroup id="previewuploadedFilesPanId"
+					rendered="#{not empty formMgmtBean.formAttachemts}">
+					<h:dataTable id="previewuploadedFilesTblId"
+						styleClass="display boxshadow"
+						value="#{formMgmtBean.formAttachemts}" cellspacing="0"
+						width="100%" var="file" binding="#{previewuploadedFilesTblBnd}">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="S.No." />
+							</f:facet>
+							<h:outputText value="#{previewuploadedFilesTblBnd.rowIndex + 1}"
+								style="float:right" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="File Type" />
+							</f:facet>
+							<div>
+								<h:outputText value="#{label.photo_att}"
+									rendered="#{file.fileType eq 'photo'}" />
+								<h:outputText value="#{label.ration_card_att}"
+									rendered="#{file.fileType eq 'rationCard'}" />
+								<h:outputText value="#{label.voter_id_att}"
+									rendered="#{file.fileType eq 'voterId'}" />
+								<h:outputText value="#{label.auther_no_att}"
+									rendered="#{file.fileType eq 'atharId'}" />
+								<h:outputText value="#{label.bank_att}"
+									rendered="#{file.fileType eq 'bankPassbook'}" />
+							</div>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="File Name" />
+							</f:facet>
+							<div>
+								<h:commandLink id="previewdwnbtnId"
+									action="#{formMgmtBean.downloadUploadedFile(file)}"
+									immediate="true" value="#{file.fileName}">
+								</h:commandLink>
+							</div>
+						</h:column>
+
+					</h:dataTable>
+					<script type="text/javascript">
+							$(document).ready(function() {
+								$('#formId\\:previewuploadedFilesTblId').DataTable({
+									"bPaginate" : false,
+									"bFilter" : false,
+									"bInfo" : false,
+									"ordering" : false,
+								});
+							});
+						</script>
+				</h:panelGroup>
+
 				<h:panelGroup rendered="#{formMgmtBean.pageFlag eq 'pre-view'}">
 					<div style="margin-top: 13px; text-align: center;"
 						class="form-group col-sm-12">
@@ -930,7 +1102,7 @@ select {
 									requiredMessage="Comments required"
 									value="#{formMgmtBean.reviewComments}" class="form-control"
 									rows="5" />
-								<h:message for="commnetsId" />
+								<h:message for="commnetsId" styleClass="error-msg " />
 							</div>
 						</div>
 						<div style="margin-top: 13px;" class="form-group col-sm-12">

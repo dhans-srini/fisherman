@@ -161,7 +161,7 @@ select {
 							value="Name" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText id="nameId" value="#{userMgmtBean.user.name}"
-							styleClass="form-control" required="true"
+							maxlength="80" styleClass="form-control" required="true"
 							requiredMessage="Name is required" />
 						<h:message for="nameId" style="color: red;" />
 					</div>
@@ -172,7 +172,7 @@ select {
 							value="User Name" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText id="userNameId" value="#{userMgmtBean.user.userName}"
-							styleClass="form-control" required="true"
+							maxlength="80" styleClass="form-control" required="true"
 							requiredMessage="User Name is required" />
 						<h:message for="userNameId" style="color: red;" />
 					</div>
@@ -183,7 +183,7 @@ select {
 							value="Password" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputSecret id="pwdId" value="#{userMgmtBean.user.password}"
-							styleClass="form-control"
+							maxlength="80" styleClass="form-control"
 							required="#{userMgmtBean.user.id eq null}"
 							requiredMessage="Password is required" />
 						<h:message for="pwdId" style="color: red;" />
@@ -196,7 +196,7 @@ select {
 					<div class="col-lg-8 col-md-8 col-sm-8">
 
 						<h:inputSecret id="conPwdId" styleClass="form-control"
-							value="#{userMgmtBean.user.confirmPwd}"
+							value="#{userMgmtBean.user.confirmPwd}" maxlength="80"
 							required="#{userMgmtBean.user.id eq null}"
 							requiredMessage="Confirm Password is required" />
 						<h:message for="conPwdId" style="color: red;" />
@@ -206,7 +206,7 @@ select {
 
 				<div class="form-group col-sm-12 ">
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-							value="Status" /> </label>
+							value="Active" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:selectBooleanCheckbox id="status"
 							value="#{userMgmtBean.user.isActive}" style="color: red;" />

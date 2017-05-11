@@ -66,7 +66,7 @@ public class FormService {
           + "f.tn_fish_association_dtl,f.work_type,f.is_prev_year_benefitter,f.benefitted_year,f.is_benefitter,"
           + "f.is_getting_relief_fund,f.village,f.district,f.taluk, "
           + "v.name villageName,f.socity, s.name socityName,s.code societyCode from form f "
-          + "left join villages v on v.id=f.village=v.id "
+          + "left join villages v on v.id=f.village "
           + "left join societies s on s.id=f.socity where f.code=?";
   private final static String formReviewHistoryByCode = "select his.id,his.status, his.comments "
       + "from form f join form_review_history his on his.form=f.id where f.code=?";
@@ -92,7 +92,7 @@ public class FormService {
       form.setStatus("submitted");
       if (form.getId() == null) {
         PreparedStatement ps = con.prepareStatement(insertTableSQL);
-        String formCode = "02/" + form.getSocityCode() + "/";
+        String formCode = "02/" + form.getSocityCode().trim() + "/";
         formCode += UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6).toUpperCase();
 
         form.setFormCode(formCode);

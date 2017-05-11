@@ -57,6 +57,10 @@ body {
 	margin-right: 15px;
 }
 
+.tbl-sl-no {
+	width: 50px;
+}
+
 select {
 	font-family: inherit;
 	font-size: inherit;
@@ -121,8 +125,8 @@ select {
 							value="#{label.code}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<h:inputText id="formCodeId" value="#{formMgmtBean.formCode}"
-							required="true" requiredMessage="Form code is required"
-							styleClass="form-control" />
+							maxlength="30" required="true"
+							requiredMessage="Form code is required" styleClass="form-control" />
 						<h:message for="formCodeId" styleClass="error-msg " />
 					</div>
 				</div>
@@ -195,7 +199,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.circle}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText id="talukId" value="#{formMgmtBean.form.taluk}"
+						<h:inputText id="talukId" value="#{formMgmtBean.form.taluk}" maxlength="400"
 							styleClass="form-control"
 							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
 							requiredMessage="#{label.circle} தேவையானது." />
@@ -253,7 +257,7 @@ select {
 							value="#{label.fisher_woman_name}"
 							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText id="firstNameId" value="#{formMgmtBean.form.name}"
+						<h:inputText id="firstNameId" value="#{formMgmtBean.form.name}" maxlength="400"
 							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
 							requiredMessage="#{formMgmtBean.form.type ne 'nfsrs_woman'?label.full_name_with_alias_name:label.fisher_woman_name} தேவையானது."
 							styleClass="form-control" />
@@ -268,7 +272,7 @@ select {
 							value="#{label.fisher_woman_father_husbend_name}"
 							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.fathersName}"
+						<h:inputText value="#{formMgmtBean.form.fathersName}" maxlength="400"
 							id="fathersNameId"
 							required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
 							requiredMessage="#{formMgmtBean.form.type ne 'nfsrs_woman'?label.father_name:label.fisher_woman_father_husbend_name} தேவையானது."
@@ -283,7 +287,7 @@ select {
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 								value="#{label.age}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
-							<h:inputText value="#{formMgmtBean.form.age}"
+							<h:inputText value="#{formMgmtBean.form.age}" maxlength="35"
 								styleClass="form-control" />
 						</div>
 					</div>
@@ -331,7 +335,7 @@ select {
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 								value="#{label.income_det}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
-							<h:inputText value="#{formMgmtBean.form.incomeDet}"
+							<h:inputText value="#{formMgmtBean.form.incomeDet}" maxlength="400"
 								styleClass="form-control" />
 						</div>
 					</div>
@@ -341,7 +345,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.fish_man_id_details}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.biometricId}"
+						<h:inputText value="#{formMgmtBean.form.biometricId}" maxlength="400"
 							styleClass="form-control" />
 					</div>
 				</div>
@@ -353,7 +357,7 @@ select {
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 								value="#{label.if_not_fisher_id_app_form_for_fisher_id}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
-							<h:inputText value="#{formMgmtBean.form.biometricAppFormDetails}"
+							<h:inputText value="#{formMgmtBean.form.biometricAppFormDetails}" maxlength="400"
 								styleClass="form-control" />
 						</div>
 					</div>
@@ -363,7 +367,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.ration_card}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.rationCardId}"
+						<h:inputText value="#{formMgmtBean.form.rationCardId}" maxlength="400"
 							styleClass="form-control" />
 					</div>
 				</div>
@@ -373,7 +377,7 @@ select {
 							value="#{label.voter_id_details}" />
 					</label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.voterId}"
+						<h:inputText value="#{formMgmtBean.form.voterId}" maxlength="400"
 							styleClass="form-control" />
 					</div>
 				</div>
@@ -382,7 +386,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.adhaar_no}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.adhaarNo}"
+						<h:inputText value="#{formMgmtBean.form.adhaarNo}" maxlength="400"
 							styleClass="form-control" />
 					</div>
 				</div>
@@ -391,7 +395,7 @@ select {
 					<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 							value="#{label.national_bank_acc_detail}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.nationalBankDetails}"
+						<h:inputText value="#{formMgmtBean.form.nationalBankDetails}" maxlength="400"
 							styleClass="form-control" />
 					</div>
 				</div>
@@ -401,7 +405,7 @@ select {
 							value="#{label.group_acc_details}" />
 					</label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.groupAccDetails}"
+						<h:inputText value="#{formMgmtBean.form.groupAccDetails}" maxlength="400"
 							styleClass="form-control" />
 					</div>
 				</div>
@@ -413,7 +417,7 @@ select {
 							value="#{label.fisher_woman_co_opertaive_details}"
 							rendered="#{formMgmtBean.form.type eq 'nfsrs_woman'}" /> </label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.cooperativeBankDetails}"
+						<h:inputText value="#{formMgmtBean.form.cooperativeBankDetails}" maxlength="400"
 							styleClass="form-control" />
 					</div>
 				</div>
@@ -424,7 +428,7 @@ select {
 								value="#{label.tn_fish_association_no}" /> </label>
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<h:inputText
-								value="#{formMgmtBean.form.tnFishAssociationDetails}"
+								value="#{formMgmtBean.form.tnFishAssociationDetails}" maxlength="400"
 								styleClass="form-control" />
 						</div>
 					</div>
@@ -449,7 +453,7 @@ select {
 							<h:outputText value="#{label.boat_owner_cer_details}" />
 						</h:panelGroup></label>
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h:inputText value="#{formMgmtBean.form.workType}"
+						<h:inputText value="#{formMgmtBean.form.workType}" maxlength="400"
 							styleClass="form-control" />
 					</div>
 				</div>
@@ -477,7 +481,7 @@ select {
 							<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
 									value="#{label.if_yes_from_which_year} " /></label>
 							<div class="col-lg-8 col-md-8 col-sm-8">
-								<h:inputText value="#{formMgmtBean.form.benefittedYear}"
+								<h:inputText value="#{formMgmtBean.form.benefittedYear}" maxlength="10"
 									styleClass="form-control" />
 							</div>
 						</div>
@@ -547,6 +551,9 @@ select {
 									itemLabel="#{label.auther_no_att}" />
 								<f:selectItem itemValue="bankPassbook"
 									itemLabel="#{label.bank_att}" />
+								<f:selectItem itemValue="fisher_id"
+									itemLabel="#{label.fisherman_id_att}" />
+								<f:ajax execute="@this" render="fileId allowFiletypeId" />
 							</h:selectOneMenu>
 						</div>
 					</div>
@@ -557,16 +564,50 @@ select {
 							<h:inputFile value="#{formMgmtBean.file}"
 								required="#{param['javax.faces.source'] eq 'formId:file-upload-btn'}"
 								id="fileId" requiredMessage="#{label.attachemt_file} தேவையானது."
-								mimeType="#{formMgmtBean.fileType}"></h:inputFile>
+								j:accept="image/jpg,image/png,image/jpeg,image/gif 
+								#{formMgmtBean.fileType ne 'photo'?',application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document':''}"></h:inputFile>
+							<h:outputText id="allowFiletypeId"
+								value="Note: Allowed file types: image #{formMgmtBean.fileType ne 'photo'?', pdf, doc, docx':''}" />
+							<br />
 							<h:message for="fileId" styleClass="error-msg " />
+							<br /> <span id="fileError" class="error-msg " />
+							<script type="text/javascript">
+								$('#formId\\:fileId').on("change",function(e) {
+									$("#fileError").text('');
+									var msg = "";
+									var file=this.files[0];
+									if(file.size &gt;= 20971520){
+										msg = "File size should be less than 20MB";
+									}
+									var fileTypes = ['image/jpg','image/png','image/jpeg','image/gif',
+										'application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+									console.log($.inArray(file.type, fileTypes));
+									if(file.type==undefined|| $.inArray(file.type, fileTypes) == -1){
+										if(!msg==""){
+											msg=msg+', ';
+										}
+										msg=msg+"File type is not allowed";
+									}
+									console.log(msg);
+									if(!msg==""){
+										$("#fileError").text(msg);
+										$(this).val('');
+									} 
+								});
+								function fileUpload(){
+									$('#formId\\:file-upload-btn').css("display", "none");
+									$("#fileUploadInProgress").css("display", "block");
+								}
+							</script>
 						</div>
 					</div>
 					<div class="form-group col-sm-12 " style="text-align: center;">
-						<h:commandLink id="file-upload-btn"
+						<h:commandLink id="file-upload-btn" onclick="fileUpload();"
 							action="#{formMgmtBean.fileUpload()}"
 							styleClass="btn btn-primary mrg-right" value="Upload">
 							<f:ajax execute="fileUploadPanId" render="fileUploadPanId" />
 						</h:commandLink>
+						<span id="fileUploadInProgress" style="display: none;">Uploading...</span>
 					</div>
 					<h:panelGroup id="uploadedFilesPanId"
 						rendered="#{not empty formMgmtBean.formAttachemts}">
@@ -597,6 +638,8 @@ select {
 										rendered="#{file.fileType eq 'atharId'}" />
 									<h:outputText value="#{label.bank_att}"
 										rendered="#{file.fileType eq 'bankPassbook'}" />
+									<h:outputText value="#{label.fisherman_id_att}"
+										rendered="#{file.fileType eq 'fisher_id'}" />
 								</div>
 							</h:column>
 							<h:column>
@@ -663,15 +706,18 @@ select {
 
 			<h:panelGroup styleClass="fnt-size-11 "
 				rendered="#{formMgmtBean.pageFlag eq 'pre-view' or formMgmtBean.pageFlag eq 'view'}">
-				<div class="form-group col-sm-12 " style="margin-bottom: 50px;">
-					<div class="col-lg-7 col-md-7 col-sm-7" />
-					<div class="col-lg-5 col-md-5 col-sm-5">
-						<img
-							src="#{request.contextPath}/fileController?uniqueName=#{formMgmtBean.photoUniqueName}"
-							alt="PHOTO" height="200" width="150" />
-					</div>
 
-				</div>
+				<c:if test="#{formMgmtBean.photoUniqueName ne null}">
+					<div class="form-group col-sm-12 " style="margin-bottom: 50px;">
+						<div class="col-lg-7 col-md-7 col-sm-7" />
+						<div class="col-lg-5 col-md-5 col-sm-5">
+							<img
+								src="#{request.contextPath}/fileController?uniqueName=#{formMgmtBean.photoUniqueName}"
+								alt="PHOTO" height="200" width="150" />
+						</div>
+
+					</div>
+				</c:if>
 				<h:panelGroup rendered="#{formMgmtBean.form.formCode ne null}">
 					<div class="form-group col-sm-12 ">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
@@ -1003,6 +1049,8 @@ select {
 									rendered="#{file.fileType eq 'atharId'}" />
 								<h:outputText value="#{label.bank_att}"
 									rendered="#{file.fileType eq 'bankPassbook'}" />
+								<h:outputText value="#{label.fisherman_id_att}"
+									rendered="#{file.fileType eq 'fisher_id'}" />
 							</div>
 						</h:column>
 						<h:column>
@@ -1095,10 +1143,10 @@ select {
 
 						<div class="form-group col-sm-12 ">
 							<label class="control-label col-lg-4 col-md-4 col-sm-4"><h:outputText
-									value="comments" /> </label>
+									value="Comments" /> </label>
 							<div class="col-lg-8 col-md-8 col-sm-8">
 								<h:inputTextarea id="commnetsId"
-									required="#{param['javax.faces.source'] eq 'formId:preview-btn-id'}"
+									required="#{param['javax.faces.source'] eq 'formId:rejectBtnId'}"
 									requiredMessage="Comments required"
 									value="#{formMgmtBean.reviewComments}" class="form-control"
 									rows="5" />
@@ -1110,6 +1158,7 @@ select {
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
 								<h:commandButton id="rejectBtnId" style="float: right;"
 									styleClass="btn btn-primary"
+									rendered="#{formMgmtBean.form.status eq 'submitted'}"
 									action="#{formMgmtBean.reviewForm('rejected')}" value="Reject">
 									<f:ajax execute="hisPanId" render="@form" />
 								</h:commandButton>
@@ -1128,7 +1177,7 @@ select {
 						<h:dataTable id="formHisTblId" styleClass="display boxshadow"
 							value="#{formMgmtBean.formReviewHistory}" cellspacing="0"
 							width="100%" var="his" binding="#{formHisBnd}">
-							<h:column>
+							<h:column headerClass="tbl-sl-no">
 								<f:facet name="header">
 									<h:outputText value="S.No." />
 								</f:facet>
@@ -1146,7 +1195,7 @@ select {
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="status" />
+									<h:outputText value="Status" />
 								</f:facet>
 								<div>
 									<h:outputText value="#{his.status}" />

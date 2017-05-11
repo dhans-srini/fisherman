@@ -24,36 +24,36 @@ DROP TABLE IF EXISTS `form`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `form` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) DEFAULT NULL,
-  `fathers_name` varchar(200) DEFAULT NULL,
+  `name` varchar(600) DEFAULT NULL,
+  `fathers_name` varchar(600) DEFAULT NULL,
   `is_married` tinyint(1) DEFAULT NULL,
-  `section` varchar(45) DEFAULT NULL,
+  `section` varchar(600) DEFAULT NULL,
   `code` varchar(45) DEFAULT NULL,
   `created_on` datetime DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
   `address` text,
-  `biometric_id` varchar(20) DEFAULT NULL,
-  `ration_card_id` varchar(20) DEFAULT NULL,
-  `voter_id` varchar(20) DEFAULT NULL,
-  `adhaar_no` varchar(50) DEFAULT NULL,
-  `national_bank_details` varchar(500) DEFAULT NULL,
-  `group_acc_dtls` varchar(500) DEFAULT NULL,
-  `coop_bank_dtl` varchar(100) DEFAULT NULL,
-  `tn_fish_association_dtl` varchar(100) DEFAULT NULL,
+  `biometric_id` varchar(600) DEFAULT NULL,
+  `ration_card_id` varchar(600) DEFAULT NULL,
+  `voter_id` varchar(600) DEFAULT NULL,
+  `adhaar_no` varchar(600) DEFAULT NULL,
+  `national_bank_details` varchar(600) DEFAULT NULL,
+  `group_acc_dtls` varchar(600) DEFAULT NULL,
+  `coop_bank_dtl` varchar(600) DEFAULT NULL,
+  `tn_fish_association_dtl` varchar(600) DEFAULT NULL,
   `work_type` varchar(50) DEFAULT NULL,
   `is_prev_year_benefitter` tinyint(1) DEFAULT '0',
-  `benefitted_year` varchar(10) DEFAULT NULL,
+  `benefitted_year` varchar(600) DEFAULT NULL,
   `is_benefitter` tinyint(1) DEFAULT '0',
   `is_getting_relief_fund` tinyint(1) DEFAULT '0',
   `type` varchar(45) DEFAULT NULL,
   `age` varchar(45) DEFAULT NULL,
-  `income_det` varchar(500) DEFAULT NULL,
-  `bio_metric_app_form_det` varchar(500) DEFAULT NULL,
+  `income_det` varchar(600) DEFAULT NULL,
+  `bio_metric_app_form_det` varchar(600) DEFAULT NULL,
   `is_full_time_fisherman` tinyint(4) DEFAULT NULL,
   `village` bigint(20) DEFAULT NULL,
-  `taluk` varchar(45) DEFAULT NULL,
-  `district` varchar(45) DEFAULT NULL,
+  `taluk` varchar(600) DEFAULT NULL,
+  `district` varchar(600) DEFAULT NULL,
   `socity` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code_UNIQUE` (`code`),
@@ -61,7 +61,7 @@ CREATE TABLE `form` (
   KEY `fk_socity_idx` (`socity`),
   CONSTRAINT `fk_socity` FOREIGN KEY (`socity`) REFERENCES `societies` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fkvillage` FOREIGN KEY (`village`) REFERENCES `villages` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `form` (
 
 LOCK TABLES `form` WRITE;
 /*!40000 ALTER TABLE `form` DISABLE KEYS */;
-INSERT INTO `form` VALUES (13,'a','b',1,'c','9191d3048','2017-04-30 14:15:43',NULL,'accepted',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,'sample name','sample fathers name',1,'sample section','c6b5a8ab1','2017-04-30 14:47:35','2017-05-02 16:08:32','accepted',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,'new1name','new1f',1,'','8f9b2592b','2017-05-02 13:43:19','2017-05-04 18:10:48','rejected','','','','','','','','','','',0,NULL,0,0,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL),(16,'new2name','new2f',1,'new2section','c15a4eef2','2017-05-02 13:48:22','2017-05-02 15:14:15','submitted',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(17,'adfadf','asdf',1,'adf','21c40c52e','2017-05-02 15:27:13',NULL,'submitted',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(18,'adfadf','asdf',1,'adf','2faf0bb60','2017-05-02 15:27:23','2017-05-03 18:44:12','submitted',NULL,'','','','','','','','','',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(19,'asdf','asdf',1,'dfa','2372a07b6','2017-05-03 20:56:48',NULL,'submitted',NULL,'adf','asdf','asdfasdf','adsf','adsf','adsf','asdf','asdf','asdf',1,'2015',1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(20,'spl_dhs','spl_dhs_f',1,'bc','f84d2d','2017-05-04 17:47:09','2017-05-04 17:50:43','submitted','spl_dhs_a','spl_dhs_attai','spl_dhs_ration','spl_dhs_vot','spl_dhs_athar','spl_dhs_photo_bank','spl_dhs_group_ac','spl_dhs_sangam','spl_dhs_nala variam_updated','spl_dhs_padagu',1,'2017',1,1,'spl_allowance','',NULL,'',NULL,NULL,NULL,NULL,NULL),(21,'ban_dhs_name','ban_dhs_fat',1,'bc','6a967c','2017-05-04 18:02:41',NULL,'submitted','ban_dhs_add','ban_dhs_id','ban_dhs_ration','ban_dhs_vot','ban_dhs_athar','ban_dhs_bankac','ban_dhs_goup_ac','ban_dhs_sang',NULL,'ban_dhs_type',NULL,NULL,NULL,NULL,'fishing_ban_relief','ban_dhs_age',NULL,'ban_dhs_form',1,NULL,NULL,NULL,NULL),(23,'name','fathers name',1,'bc','358f31','2017-05-04 19:03:12','2017-05-04 19:08:25','submitted','address','id card no','56654','asdfdsf','adf','df','adsf','asdf','adsf','meen pidi',1,'asdf',1,1,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'taluk','district',NULL),(24,'erersr','erer',0,'sc','c9ce8f','2017-05-04 19:21:03','2017-05-04 19:21:22','submitted','ere','rewer','rer','erere','erer','rere','ere','','','',0,NULL,0,1,'nfsrs','',NULL,'',NULL,NULL,'erser','dsrsdr',NULL),(25,'Sankaranarayanan','Kumaresan',1,'mbc','c32441','2017-05-04 19:29:02',NULL,'accepted','343/78, Nallikuppam Nadu theru\nRK Nagar Chennai','TNFSH-098/567','TN-GH-878','TN0712387998','787649082323','NOT AVAILABALE','NOT AVAILABLE','RK NAGAR SOUTH SOCIETY','32480','COUNTRY BOAT',1,'2013',NULL,1,'nfsrs','32','TN/09/34-989','Attached the application form',NULL,NULL,'Chennai North','Chennai',NULL),(26,'','',NULL,'','605de1','2017-05-04 19:56:57',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'nfsrs','','','',NULL,NULL,'','',NULL),(27,'c','c',1,'bc','a9ddab','2017-05-05 01:47:41',NULL,'submitted','c','c','c','c','c','c','c','c',NULL,'c',1,'test',NULL,1,'nfsrs_woman','cc',NULL,'c',NULL,NULL,'adf','asdfcc',NULL),(28,'tst','asdfasdf',1,'bc','f418b5','2017-05-05 03:03:28','2017-05-05 03:19:13','submitted','','asdfsd','dsaf','adf','asdfasdf','asfd','asdf','adsfasdf','asdf','asdf',1,'asdfa',1,1,'spl_allowance',NULL,NULL,NULL,0,1,'test','test',1),(29,'','',NULL,'','02/null/85bd80','2017-05-05 03:33:18',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','',NULL),(30,'','',NULL,'','02/null/67eb7a','2017-05-05 03:33:48',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'','',15),(31,'','',NULL,'','02/null/a7681c','2017-05-05 03:37:54',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'','',15),(32,'','',NULL,'','02/null/44e216','2017-05-05 03:38:58',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'nfsrs','','','',NULL,2,'','',17),(33,'','',NULL,'','02/X-264/7edeec','2017-05-05 03:40:36',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,1,'','',1),(34,'','',NULL,'','02/FMC-39/34FB08','2017-05-05 09:34:07',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'nfsrs','','','',NULL,1,'','',7),(35,'தனசேகரன் ','விண்ணப்பம் வந்து சேரும் நாள் ',0,'bc','02/FMC-26/DF1E85','2017-05-05 09:54:18','2017-05-08 13:28:13','submitted','','','','','','','','','','',0,NULL,0,0,'spl_allowance',NULL,NULL,NULL,0,2,'தனசேகரன் ','Chennai',19),(36,'','',NULL,'','02/\r\nFMC-17\r\n/051EF8','2017-05-05 10:05:41',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'asdfa','asdf',26),(37,'','',NULL,'','02/X-288/1B26A2','2017-05-05 10:06:00',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,1,'asdf','asdf',6),(38,'','',NULL,'','02/FMC-26/0ED704','2017-05-05 10:06:38',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,1,'asdfa','',3),(39,'asdf','',NULL,'','02/FMC-2/4757BF','2017-05-05 10:07:18',NULL,'submitted','','','','','','','','',NULL,'',NULL,NULL,NULL,NULL,'nfsrs_woman','',NULL,'',NULL,2,'asdf','asdf',27),(40,'adsf','',NULL,'','02/FMCS-6\r\n/7FF7A9','2017-05-05 10:07:46',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,1,'asdfa','asdf',5),(41,'asdf','asdf',NULL,'','02/FMCS-5/3B3D21','2017-05-05 10:09:37',NULL,'submitted','adf','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'adf','asdf',23),(42,'','',NULL,'','02/FMC-2/550C06','2017-05-05 10:34:46',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'தனசேகரன் ','Chennai',27),(43,'','',NULL,'','02/null/3E1C5C','2017-05-07 10:16:14',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(44,'','',NULL,'','02/null/744DDE','2017-05-07 10:23:12',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(45,'','',NULL,'','02/null/F08D06','2017-05-07 10:27:12',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(46,'','',NULL,'','02/null/959FD2','2017-05-07 10:30:10',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(47,'','',NULL,'','02/null/1CA7B5','2017-05-07 10:45:34',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(48,'','',NULL,'','02/null/9DBA2F','2017-05-07 10:46:11',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(49,'','',NULL,'','02/null/8C7FA7','2017-05-07 11:02:07',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(50,'','',NULL,'','02/null/9EBF06','2017-05-07 11:11:01',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(51,'','',NULL,'','02/null/B4B6A1','2017-05-07 11:13:47',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(52,'dhs','dhs',0,'','02/FMCS-5/7934E0','2017-05-11 00:00:10','2017-05-11 00:37:47','submitted','dhs','','','','','','','','','',0,NULL,0,0,'spl_allowance',NULL,NULL,NULL,0,2,'dhs','Chennai',23);
+INSERT INTO `form` VALUES (13,'a','b',1,'c','9191d3048','2017-04-30 14:15:43',NULL,'accepted',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,'sample name','sample fathers name',1,'sample section','c6b5a8ab1','2017-04-30 14:47:35','2017-05-02 16:08:32','accepted',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,'new1name','new1f',1,'','8f9b2592b','2017-05-02 13:43:19','2017-05-04 18:10:48','rejected','','','','','','','','','','',0,NULL,0,0,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL),(16,'new2name','new2f',1,'new2section','c15a4eef2','2017-05-02 13:48:22','2017-05-02 15:14:15','submitted',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(17,'adfadf','asdf',1,'adf','21c40c52e','2017-05-02 15:27:13',NULL,'submitted',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(18,'adfadf','asdf',1,'adf','2faf0bb60','2017-05-02 15:27:23','2017-05-03 18:44:12','submitted',NULL,'','','','','','','','','',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(19,'asdf','asdf',1,'dfa','2372a07b6','2017-05-03 20:56:48',NULL,'submitted',NULL,'adf','asdf','asdfasdf','adsf','adsf','adsf','asdf','asdf','asdf',1,'2015',1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(20,'spl_dhs','spl_dhs_f',1,'bc','f84d2d','2017-05-04 17:47:09','2017-05-04 17:50:43','submitted','spl_dhs_a','spl_dhs_attai','spl_dhs_ration','spl_dhs_vot','spl_dhs_athar','spl_dhs_photo_bank','spl_dhs_group_ac','spl_dhs_sangam','spl_dhs_nala variam_updated','spl_dhs_padagu',1,'2017',1,1,'spl_allowance','',NULL,'',NULL,NULL,NULL,NULL,NULL),(21,'ban_dhs_name','ban_dhs_fat',1,'bc','6a967c','2017-05-04 18:02:41',NULL,'submitted','ban_dhs_add','ban_dhs_id','ban_dhs_ration','ban_dhs_vot','ban_dhs_athar','ban_dhs_bankac','ban_dhs_goup_ac','ban_dhs_sang',NULL,'ban_dhs_type',NULL,NULL,NULL,NULL,'fishing_ban_relief','ban_dhs_age',NULL,'ban_dhs_form',1,NULL,NULL,NULL,NULL),(23,'name','fathers name',1,'bc','358f31','2017-05-04 19:03:12','2017-05-04 19:08:25','submitted','address','id card no','56654','asdfdsf','adf','df','adsf','asdf','adsf','meen pidi',1,'asdf',1,1,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'taluk','district',NULL),(24,'erersr','erer',0,'sc','c9ce8f','2017-05-04 19:21:03','2017-05-04 19:21:22','submitted','ere','rewer','rer','erere','erer','rere','ere','','','',0,NULL,0,1,'nfsrs','',NULL,'',NULL,NULL,'erser','dsrsdr',NULL),(25,'Sankaranarayanan','Kumaresan',1,'mbc','c32441','2017-05-04 19:29:02',NULL,'accepted','343/78, Nallikuppam Nadu theru\nRK Nagar Chennai','TNFSH-098/567','TN-GH-878','TN0712387998','787649082323','NOT AVAILABALE','NOT AVAILABLE','RK NAGAR SOUTH SOCIETY','32480','COUNTRY BOAT',1,'2013',NULL,1,'nfsrs','32','TN/09/34-989','Attached the application form',NULL,NULL,'Chennai North','Chennai',NULL),(26,'','',NULL,'','605de1','2017-05-04 19:56:57',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'nfsrs','','','',NULL,NULL,'','',NULL),(27,'c','c',1,'bc','a9ddab','2017-05-05 01:47:41',NULL,'submitted','c','c','c','c','c','c','c','c',NULL,'c',1,'test',NULL,1,'nfsrs_woman','cc',NULL,'c',NULL,NULL,'adf','asdfcc',NULL),(28,'tst','asdfasdf',1,'bc','f418b5','2017-05-05 03:03:28','2017-05-05 03:19:13','submitted','','asdfsd','dsaf','adf','asdfasdf','asfd','asdf','adsfasdf','asdf','asdf',1,'asdfa',1,1,'spl_allowance',NULL,NULL,NULL,0,1,'test','test',1),(29,'','',NULL,'','02/null/85bd80','2017-05-05 03:33:18',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','',NULL),(30,'','',NULL,'','02/null/67eb7a','2017-05-05 03:33:48',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'','',15),(31,'','',NULL,'','02/null/a7681c','2017-05-05 03:37:54',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'','',15),(32,'','',NULL,'','02/null/44e216','2017-05-05 03:38:58',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'nfsrs','','','',NULL,2,'','',17),(33,'','',NULL,'','02/X-264/7edeec','2017-05-05 03:40:36',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,1,'','',1),(34,'','',NULL,'','02/FMC-39/34FB08','2017-05-05 09:34:07',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'nfsrs','','','',NULL,1,'','',7),(35,'தனசேகரன் ','விண்ணப்பம் வந்து சேரும் நாள் ',0,'bc','02/FMC-26/DF1E85','2017-05-05 09:54:18','2017-05-08 13:28:13','submitted','','','','','','','','','','',0,NULL,0,0,'spl_allowance',NULL,NULL,NULL,0,2,'தனசேகரன் ','Chennai',19),(36,'','',NULL,'','02/\r\nFMC-17\r\n/051EF8','2017-05-05 10:05:41',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'asdfa','asdf',26),(37,'','',NULL,'','02/X-288/1B26A2','2017-05-05 10:06:00',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,1,'asdf','asdf',6),(38,'','',NULL,'','02/FMC-26/0ED704','2017-05-05 10:06:38',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,1,'asdfa','',3),(39,'asdf','',NULL,'','02/FMC-2/4757BF','2017-05-05 10:07:18',NULL,'submitted','','','','','','','','',NULL,'',NULL,NULL,NULL,NULL,'nfsrs_woman','',NULL,'',NULL,2,'asdf','asdf',27),(40,'adsf','',NULL,'','02/FMCS-6\r\n/7FF7A9','2017-05-05 10:07:46',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,1,'asdfa','asdf',5),(41,'asdf','asdf',NULL,'','02/FMCS-5/3B3D21','2017-05-05 10:09:37',NULL,'submitted','adf','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'adf','asdf',23),(42,'','',NULL,'','02/FMC-2/550C06','2017-05-05 10:34:46',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'தனசேகரன் ','Chennai',27),(43,'','',NULL,'','02/null/3E1C5C','2017-05-07 10:16:14',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(44,'','',NULL,'','02/null/744DDE','2017-05-07 10:23:12',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(45,'','',NULL,'','02/null/F08D06','2017-05-07 10:27:12',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(46,'','',NULL,'','02/null/959FD2','2017-05-07 10:30:10',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(47,'','',NULL,'','02/null/1CA7B5','2017-05-07 10:45:34',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(48,'','',NULL,'','02/null/9DBA2F','2017-05-07 10:46:11',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(49,'','',NULL,'','02/null/8C7FA7','2017-05-07 11:02:07',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(50,'','',NULL,'','02/null/9EBF06','2017-05-07 11:11:01',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(51,'','',NULL,'','02/null/B4B6A1','2017-05-07 11:13:47',NULL,'submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,NULL,'','Chennai',NULL),(52,'dhs','dhs',0,'mbc','02/FMCS-5/7934E0','2017-05-11 00:00:10','2017-05-11 12:32:04','submitted','dhs','','','','','','','','','',0,NULL,1,1,'spl_allowance',NULL,NULL,NULL,0,2,'dhs','Chennai',23),(53,'asdf','addf',NULL,'','02/FMC-2/D6139C','2017-05-11 09:22:49','2017-05-11 09:26:15','submitted','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'asfd','Chennai',27),(54,'adf','asdf',NULL,'','02/W-97/95D41C','2017-05-11 10:40:31',NULL,'rejected','','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'qewr','Chennai',39),(55,'adfaf','adfasdf',NULL,'','02/ FMC(W)49\r\n/30E91E','2017-05-11 11:28:57',NULL,'accepted','asdfa','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'  Annai Theresa Fisherwomen co op society, FMC(W)49  ','Chennai',31),(56,'adfasf','asdfasf',NULL,'','02/FMC(W)49/3CCE9E','2017-05-11 11:30:56',NULL,'accepted','asdfasf','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'asfsdfaf','Chennai',31),(57,'dfgfd','gdfgdf',NULL,'','02/FMC-2/35B31E','2017-05-11 11:57:24',NULL,'submitted','gdfgd','','','','','','','','','',NULL,NULL,NULL,NULL,'spl_allowance',NULL,NULL,NULL,NULL,2,'dfgdfg','Chennai',27),(58,'asdfasf','asdf',0,'st','02/FMCS-46/352DFC','2017-05-11 12:10:55','2017-05-11 12:33:30','accepted','','','','','','','','','','',0,NULL,0,0,'spl_allowance',NULL,NULL,NULL,0,2,'asdf','Chennai',20);
 /*!40000 ALTER TABLE `form` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `form_files` (
   `file_name` varchar(100) DEFAULT NULL,
   `uploaded_on` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `form_files` (
 
 LOCK TABLES `form_files` WRITE;
 /*!40000 ALTER TABLE `form_files` DISABLE KEYS */;
-INSERT INTO `form_files` VALUES (3,52,'photo','f3bab36328183764b03106f5bac0a32e.png','ticket_28_4.png','2017-05-11 00:37:32');
+INSERT INTO `form_files` VALUES (4,53,'photo','3110480739bb9440867bd5f7e3a38d14.png','ticket_28_4.png','2017-05-11 09:22:50'),(5,54,'photo','8c7c189631815b1f728d6aa82229237f.png','sample.png','2017-05-11 10:40:31'),(6,57,'photo','903104caa704358c71da4e23959c5c2f.png','sample (3).png','2017-05-11 11:57:24'),(7,57,'rationCard','44fb2c3f2076cf2f9d41ca23f1276296.pdf','02-X-407-370488.pdf','2017-05-11 11:57:24'),(8,58,'photo','3f1c0eff7749e7230d2487f01dd2f710.png','Screenshot_2.png','2017-05-11 12:10:55'),(9,52,'photo','eab71163ff17ff7e3e92943d9c2134e4.png','Screenshot_2.png','2017-05-11 12:31:08');
 /*!40000 ALTER TABLE `form_files` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ DROP TABLE IF EXISTS `form_review_history`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `form_review_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `comments` varchar(2000) DEFAULT NULL,
+  `comments` text,
   `status` varchar(45) DEFAULT NULL,
   `reviewed_by` int(11) DEFAULT NULL,
   `form` int(11) DEFAULT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE `form_review_history` (
   KEY `fk_form_review_his_form_id_idx` (`form`),
   CONSTRAINT `fk_form_review_his_form_id` FOREIGN KEY (`form`) REFERENCES `form` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_form_reviewed_by_user_id` FOREIGN KEY (`reviewed_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `form_review_history` (
 
 LOCK TABLES `form_review_history` WRITE;
 /*!40000 ALTER TABLE `form_review_history` DISABLE KEYS */;
-INSERT INTO `form_review_history` VALUES (1,'asdfsadfas','rejected',5,13,'2017-05-02 16:06:37'),(2,'','accepted',5,13,'2017-05-02 16:07:31'),(3,'dsDAD','rejected',5,14,'2017-05-02 16:08:37'),(4,'asdfsdaf','rejected',5,14,'2017-05-03 20:51:34'),(5,'asdfasdf','rejected',5,14,'2017-05-04 16:16:12'),(6,'','accepted',5,14,'2017-05-04 16:24:57'),(7,'adsasdf','rejected',5,15,'2017-05-04 18:10:16'),(8,'','accepted',5,25,'2017-05-04 20:10:11'),(9,'asdfasdf','rejected',5,15,'2017-05-05 10:43:02');
+INSERT INTO `form_review_history` VALUES (1,'asdfsadfas','rejected',5,13,'2017-05-02 16:06:37'),(2,'','accepted',5,13,'2017-05-02 16:07:31'),(3,'dsDAD','rejected',5,14,'2017-05-02 16:08:37'),(4,'asdfsdaf','rejected',5,14,'2017-05-03 20:51:34'),(5,'asdfasdf','rejected',5,14,'2017-05-04 16:16:12'),(6,'','accepted',5,14,'2017-05-04 16:24:57'),(7,'adsasdf','rejected',5,15,'2017-05-04 18:10:16'),(8,'','accepted',5,25,'2017-05-04 20:10:11'),(9,'asdfasdf','rejected',5,15,'2017-05-05 10:43:02'),(10,'       ','rejected',5,52,'2017-05-11 11:35:13'),(11,'       asdfasdf','rejected',5,52,'2017-05-11 11:35:16'),(12,'       asdfasdf             ','rejected',5,52,'2017-05-11 11:35:22'),(13,' ','rejected',5,52,'2017-05-11 11:35:25'),(14,'','rejected',5,56,'2017-05-11 11:43:27'),(15,'sdfg','accepted',5,56,'2017-05-11 11:43:31'),(16,'','rejected',5,55,'2017-05-11 11:43:36'),(17,'','accepted',5,55,'2017-05-11 11:44:07'),(18,'  ','rejected',5,54,'2017-05-11 11:44:15'),(19,'        ','rejected',5,58,'2017-05-11 12:34:02'),(20,'        jkjkk','accepted',5,58,'2017-05-11 12:34:06');
 /*!40000 ALTER TABLE `form_review_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(45) DEFAULT NULL,
+  `user_name` varchar(100) DEFAULT NULL,
   `password` longblob,
   `last_login_time` datetime DEFAULT NULL,
   `is_admin` tinyint(1) DEFAULT '0',
@@ -192,7 +192,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (5,'admin','\�iv18)\n��֫F#��w','2017-05-11 00:42:31',1,NULL,NULL,NULL,1),(6,'test','\�iv18)\n��֫F#��w','2017-05-07 10:55:15',0,'testtest',5,5,0),(8,'testtest','��@��B1�\�^l[h9',NULL,0,'test',5,NULL,0),(9,'dhans','\�iv18)\n��֫F#��w','2017-05-07 10:53:04',0,'dhans',5,NULL,1),(10,'dhans01','\�iv18)\n��֫F#��w',NULL,0,'dhans',5,NULL,1);
+INSERT INTO `users` VALUES (5,'admin','\�iv18)\n��֫F#��w','2017-05-11 12:33:42',1,NULL,NULL,NULL,1),(6,'test','\�iv18)\n��֫F#��w','2017-05-07 10:55:15',0,'testtest',5,5,0),(8,'testtest','��@��B1�\�^l[h9',NULL,0,'test',5,NULL,0),(9,'dhans','\�iv18)\n��֫F#��w','2017-05-07 10:53:04',0,'dhans',5,NULL,1),(10,'dhans01','\�iv18)\n��֫F#��w',NULL,0,'dhans',5,NULL,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-11  1:10:50
+-- Dump completed on 2017-05-11 12:34:54

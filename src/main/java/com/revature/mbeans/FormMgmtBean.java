@@ -364,13 +364,13 @@ public class FormMgmtBean {
     }
     String fileLoc;
     if ("spl_allowance".equals(frm.getType())) {
-      fileLoc = "\\template\\spl_allowance.docx";
+      fileLoc = File.separator + "template" + File.separator + "spl_allowance.docx";
     } else if ("fishing_ban_relief".equals(frm.getType())) {
-      fileLoc = "\\template\\fishing_ban_relief.docx";
+      fileLoc = File.separator + "template" + File.separator + "fishing_ban_relief.docx";
     } else if ("nfsrs".equals(frm.getType())) {
-      fileLoc = "\\template\\nfsrs.docx";
+      fileLoc = File.separator + "template" + File.separator + "nfsrs.docx";
     } else {
-      fileLoc = "\\template\\nfsrs_woman.docx";
+      fileLoc = File.separator + "template" + File.separator + "nfsrs_woman.docx";
     }
     Document doc = new Document(baseLocataion + fileLoc);
 
@@ -521,5 +521,9 @@ public class FormMgmtBean {
       e.printStackTrace();
       Utils.addErrorMessage(e.getMessage());
     }
+  }
+
+  public boolean isMessageEmpty() {
+    return FacesContext.getCurrentInstance().getMessageList().isEmpty();
   }
 }

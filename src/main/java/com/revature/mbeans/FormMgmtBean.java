@@ -376,26 +376,24 @@ public class FormMgmtBean {
 
 
     if (photoUniqueName != null) {
-      // BufferedImage bi = ImageIO
-      // .read(new File(Utils.getValueFromAppProperties("user_file_location") + photoUniqueName));
-      // int type = bi.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bi.getType();
-      // BufferedImage ri = new BufferedImage(100, 100, type);
-      // Graphics2D g = ri.createGraphics();
-      // g.drawImage(bi, 0, 0, 100, 100, null);
-      // g.dispose();
-      //
-      // ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      // ImageIO.write(ri, "jpg", baos);
-      // baos.flush();
-      // byte[] imageInByte = baos.toByteArray();
-      // baos.close();
-      // map.put("photo", imageInByte);
+      int width = 120;
+      int height = 150;
+      BufferedImage bi = ImageIO
+          .read(new File(Utils.getValueFromAppProperties("user_file_location") + photoUniqueName));
+      int type = bi.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bi.getType();
+      BufferedImage ri = new BufferedImage(width, height, type);
+      Graphics2D g = ri.createGraphics();
+      g.drawImage(bi, 0, 0, width, height, null);
+      g.dispose();
+
       DocumentBuilder builder = new DocumentBuilder(doc);
       builder.moveToMergeField("photo");
-      Shape img = builder
-          .insertImage(Utils.getValueFromAppProperties("user_file_location") + photoUniqueName);
-      img.setWidth(30);
-      img.setHeight(130);
+      // Shape img = builder
+      // .insertImage(Utils.getValueFromAppProperties("user_file_location") + photoUniqueName);
+
+      Shape img = builder.insertImage(ri);
+      img.setWidth(width);
+      img.setHeight(height);
 
     }
 
@@ -458,7 +456,13 @@ public class FormMgmtBean {
       if ("photo".equals(fileType)) {
         photoUniqueName = uniqueName;
         if (formAttachemts != null) {
-          formAttachemts.removeIf(fa -> "photo".equals(fa.getFileType()));
+          FormAttachment fad = formAttachemts.stream()
+              .filter(fa -> "photo".equals(fa.getFileType())).findFirst().orElse(null);
+          if (fad != null) {
+            Files.deleteIfExists(Paths.get(Utils.getValueFromAppProperties("user_file_location"),
+                fad.getUniqueName()));
+            formAttachemts.remove(fad);
+          }
         }
       }
 
@@ -510,6 +514,8 @@ public class FormMgmtBean {
       if ("photo".equals(fa.getFileType())) {
         photoUniqueName = null;
       }
+      Files.deleteIfExists(
+          Paths.get(Utils.getValueFromAppProperties("user_file_location"), fa.getUniqueName()));
       formAttachemts.remove(index);
     } catch (Exception e) {
       e.printStackTrace();
